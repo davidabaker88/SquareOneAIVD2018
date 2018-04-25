@@ -1,0 +1,20 @@
+Fitter Status : Successful - Wed Apr 18 08:42:38 2018
+Quartus Prime Version : 17.0.2 Build 602 07/19/2017 SJ Lite Edition
+Revision Name : ledTest
+Top-level Entity Name : ledTest
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 672 / 32,070 ( 2 % )
+Total registers : 955
+Total pins : 18 / 457 ( 4 % )
+Total virtual pins : 0
+Total block memory bits : 44,032 / 4,065,280 ( 1 % )
+Total RAM Blocks : 9 / 397 ( 2 % )
+Total DSP Blocks : 0 / 87 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0 / 6 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )
