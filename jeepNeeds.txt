@@ -1,0 +1,37 @@
+*WHAT WE NEED FOR JEEP*
+
+#define encoderInCM
+#define targetDirection
+#define FRSensorInCM
+#define FLSensorInCM
+#define RSensorInCM
+#define LSensorInCM
+#define BRSensorInCM
+#define BLSensorInCM
+#define driveSpeedPercentage
+#define reverse
+#define challengeSelect
+#define debugSelect
+#define leftMagnetic
+#define rightMagnetic
+#define swivelDirection
+#define swivelDistance
+#define redLight
+#define yellowLight
+#define greenLight
+#define GPSLong
+#define GPSLat
+
+
+
+1.) encoder - cm
+2.) steering - target direction (orientation)
+3.) sensors - sonic (6 - dist. cm) - 
+4.) speed - %'s (top speed 5 mph)
+5.) reverse - pos neg bit (MD103 RC)
+6.) challenge select - switches/buttons
+7.) debugging select - switches
+8.) sensors - magnetic (2 - raw val 8 bit)
+9.) sensors - swivel (target direction relative to where we're facing) (current dist cm)
+10.) camera - 2 bit val (red, yellow, green)
+11.) read current GPS - arduino GPS
