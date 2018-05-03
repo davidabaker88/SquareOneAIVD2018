@@ -6,7 +6,7 @@ module CustomLogic (
 			    //OUTPUTS to board
 				HEX0,HEX1,HEX2,HEX3,HEX4,HEX5,
 				//Outputs to Processor
-				 encoderInCM,FRSensorInCM,FLSensorInC,RSensorInCM,LSensorInCM,RSensorInCM,BLSensorInCM,GPSLat,GPSLongleftMagnetic,rightMagnetic,challengeSelect,
+				 encoderInCM,FRSensorInCM,FLSensorInC,RSensorInCM,LSensorInCM,RSensorInCM,BLSensorInCM,GPSLat,GPSLong,leftMagnetic,rightMagnetic,challengeSelect,
 				 redLight,yellowLight,greenLight
 				) 
 				
@@ -23,12 +23,12 @@ input wire        swivelDirection
 input wire        reverse
 
 output wire [31:0] encoderInCM				 
-output wire [8:0]  RSensorInCM
-output wire [8:0]  LSensorInC
+output wire [8:0]  FRSensorInCM
+output wire [8:0]  FLSensorInC
 output wire	[8:0]  RSensorInCM
 output wire [8:0]  LSensorInCM
 output wire [8:0]  BLSensorInCM
-output wire [8:0]  RSensorInCM
+output wire [8:0]  BRSensorInCM
 output wire [7:0]  leftMagnetic
 output wire [7:0]  rightMagnetic
 

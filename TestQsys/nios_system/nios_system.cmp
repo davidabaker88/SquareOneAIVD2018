@@ -1,9 +1,21 @@
 	component nios_system is
 		port (
-			clk_clk         : in  std_logic                    := 'X';             -- clk
-			leds_export     : out std_logic_vector(7 downto 0);                    -- export
-			reset_reset_n   : in  std_logic                    := 'X';             -- reset_n
-			switches_export : in  std_logic_vector(7 downto 0) := (others => 'X')  -- export
+			clk_clk                     : in  std_logic                     := 'X';             -- clk
+			reset_reset_n               : in  std_logic                     := 'X';             -- reset_n
+			targetdirection_export      : out std_logic_vector(8 downto 0);                     -- export
+			drivespeedpercentage_export : out std_logic_vector(6 downto 0);                     -- export
+			swiveldistacne_export       : out std_logic_vector(7 downto 0);                     -- export
+			encoderincm_export          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- export
+			swiveldirection_export      : out std_logic;                                        -- export
+			reverse_export              : out std_logic;                                        -- export
+			frsensorincm_export         : in  std_logic_vector(8 downto 0)  := (others => 'X'); -- export
+			flsensorincm_export         : out std_logic_vector(8 downto 0);                     -- export
+			rsensorincm_export          : out std_logic_vector(8 downto 0);                     -- export
+			lsensorincm_export          : out std_logic_vector(8 downto 0);                     -- export
+			blsensorincm_export         : out std_logic_vector(8 downto 0);                     -- export
+			brsensorincm_export         : out std_logic_vector(8 downto 0);                     -- export
+			leftmagnetic_export         : out std_logic_vector(7 downto 0);                     -- export
+			rightmagnetic_export        : out std_logic_vector(7 downto 0)                      -- export
 		);
 	end component nios_system;
 

@@ -9,20 +9,52 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
-   element LEDs
+   element BLSensorInCM
    {
       datum _sortIndex
       {
-         value = "4";
+         value = "14";
          type = "int";
       }
    }
-   element LEDs.s1
+   element BRSensorInCM
    {
-      datum baseAddress
+      datum _sortIndex
       {
-         value = "8192";
-         type = "String";
+         value = "15";
+         type = "int";
+      }
+   }
+   element FLSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element FRSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element LSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element RSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
       }
    }
    element clk_0
@@ -33,11 +65,27 @@
          type = "int";
       }
    }
-   element jtag_uart
+   element driveSpeedPercentage
    {
       datum _sortIndex
       {
          value = "5";
+         type = "int";
+      }
+   }
+   element encoderInCM
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element jtag_uart
+   {
+      datum _sortIndex
+      {
+         value = "3";
          type = "int";
       }
    }
@@ -47,6 +95,14 @@
       {
          value = "8224";
          type = "String";
+      }
+   }
+   element leftMagnetic
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
       }
    }
    element nios2_processor
@@ -86,20 +142,44 @@
          type = "String";
       }
    }
-   element switches
+   element reverse
    {
       datum _sortIndex
       {
-         value = "3";
+         value = "9";
          type = "int";
       }
    }
-   element switches.s1
+   element rightMagnetic
    {
-      datum baseAddress
+      datum _sortIndex
       {
-         value = "8208";
-         type = "String";
+         value = "17";
+         type = "int";
+      }
+   }
+   element swivelDirection
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element swivelDistance
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element targetDirection
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
       }
    }
 }
@@ -123,19 +203,83 @@
  <parameter name="timeStamp" value="0" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
+ <interface
+   name="blsensorincm"
+   internal="BLSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="brsensorincm"
+   internal="BRSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="leds"
-   internal="LEDs.external_connection"
+   name="drivespeedpercentage"
+   internal="driveSpeedPercentage.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="encoderincm"
+   internal="encoderInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="flsensorincm"
+   internal="FLSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="frsensorincm"
+   internal="FRSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="leftmagnetic"
+   internal="leftMagnetic.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="lsensorincm"
+   internal="LSensorInCM.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <interface
-   name="switches"
-   internal="switches.external_connection"
+   name="reverse"
+   internal="reverse.external_connection"
    type="conduit"
    dir="end" />
- <module name="LEDs" kind="altera_avalon_pio" version="17.0" enabled="1">
+ <interface
+   name="rightmagnetic"
+   internal="rightMagnetic.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="rsensorincm"
+   internal="RSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="swiveldirection"
+   internal="swivelDirection.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="swiveldistacne"
+   internal="swivelDistance.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="targetdirection"
+   internal="targetDirection.external_connection"
+   type="conduit"
+   dir="end" />
+ <module
+   name="BLSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -147,13 +291,139 @@
   <parameter name="resetValue" value="0" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
+  <parameter name="width" value="9" />
+ </module>
+ <module
+   name="BRSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
+ </module>
+ <module
+   name="FLSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
+ </module>
+ <module
+   name="FRSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
+ </module>
+ <module
+   name="LSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
+ </module>
+ <module
+   name="RSensorInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
  </module>
  <module name="clk_0" kind="clock_source" version="17.0" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
   <parameter name="clockFrequencyKnown" value="true" />
   <parameter name="inputClockFrequency" value="0" />
   <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   name="driveSpeedPercentage"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="7" />
+ </module>
+ <module
+   name="encoderInCM"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="32" />
  </module>
  <module
    name="jtag_uart"
@@ -175,6 +445,24 @@
   <parameter name="writeIRQThreshold" value="8" />
  </module>
  <module
+   name="leftMagnetic"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
    name="nios2_processor"
    kind="altera_nios2_qsys"
    version="16.1"
@@ -188,7 +476,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="14" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='LEDs.s1' start='0x2000' end='0x2010' /><slave name='switches.s1' start='0x2010' end='0x2020' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2020' end='0x2028' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='BLSensorInCM.s1' start='0x0' end='0x10' /><slave name='BRSensorInCM.s1' start='0x0' end='0x10' /><slave name='FLSensorInCM.s1' start='0x0' end='0x10' /><slave name='FRSensorInCM.s1' start='0x0' end='0x10' /><slave name='LSensorInCM.s1' start='0x0' end='0x10' /><slave name='RSensorInCM.s1' start='0x0' end='0x10' /><slave name='driveSpeedPercentage.s1' start='0x0' end='0x10' /><slave name='encoderInCM.s1' start='0x0' end='0x10' /><slave name='leftMagnetic.s1' start='0x0' end='0x10' /><slave name='reverse.s1' start='0x0' end='0x10' /><slave name='rightMagnetic.s1' start='0x0' end='0x10' /><slave name='swivelDirection.s1' start='0x0' end='0x10' /><slave name='swivelDistance.s1' start='0x0' end='0x10' /><slave name='targetDirection.s1' start='0x0' end='0x10' /><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2020' end='0x2028' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -337,12 +625,30 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
- <module name="switches" kind="altera_avalon_pio" version="17.0" enabled="1">
+ <module name="reverse" kind="altera_avalon_pio" version="17.0" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
   <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Input" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
+   name="rightMagnetic"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
   <parameter name="irqType" value="LEVEL" />
@@ -350,6 +656,60 @@
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="8" />
+ </module>
+ <module
+   name="swivelDirection"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
+   name="swivelDistance"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="8" />
+ </module>
+ <module
+   name="targetDirection"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="9" />
  </module>
  <connection
    kind="avalon"
@@ -382,18 +742,126 @@
    kind="avalon"
    version="17.0"
    start="nios2_processor.data_master"
-   end="switches.s1">
+   end="targetDirection.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2010" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
    kind="avalon"
    version="17.0"
    start="nios2_processor.data_master"
-   end="LEDs.s1">
+   end="driveSpeedPercentage.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2000" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="swivelDistance.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="encoderInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="swivelDirection.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="reverse.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="FRSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="FLSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="RSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="LSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="BLSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="BRSensorInCM.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="leftMagnetic.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="rightMagnetic.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -419,9 +887,37 @@
    version="17.0"
    start="clk_0.clk"
    end="nios2_processor.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="switches.clk" />
- <connection kind="clock" version="17.0" start="clk_0.clk" end="LEDs.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="jtag_uart.clk" />
+ <connection
+   kind="clock"
+   version="17.0"
+   start="clk_0.clk"
+   end="targetDirection.clk" />
+ <connection
+   kind="clock"
+   version="17.0"
+   start="clk_0.clk"
+   end="driveSpeedPercentage.clk" />
+ <connection
+   kind="clock"
+   version="17.0"
+   start="clk_0.clk"
+   end="swivelDistance.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="encoderInCM.clk" />
+ <connection
+   kind="clock"
+   version="17.0"
+   start="clk_0.clk"
+   end="swivelDirection.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="reverse.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="FRSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="FLSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="RSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="LSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="BLSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="BRSensorInCM.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="leftMagnetic.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="rightMagnetic.clk" />
  <connection
    kind="clock"
    version="17.0"
@@ -438,13 +934,77 @@
    kind="reset"
    version="17.0"
    start="clk_0.clk_reset"
-   end="switches.reset" />
- <connection kind="reset" version="17.0" start="clk_0.clk_reset" end="LEDs.reset" />
+   end="jtag_uart.reset" />
  <connection
    kind="reset"
    version="17.0"
    start="clk_0.clk_reset"
-   end="jtag_uart.reset" />
+   end="targetDirection.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="driveSpeedPercentage.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="swivelDistance.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="encoderInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="swivelDirection.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="reverse.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="FRSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="FLSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="RSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="LSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="BLSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="BRSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="leftMagnetic.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="rightMagnetic.reset" />
  <connection
    kind="reset"
    version="17.0"
@@ -459,17 +1019,77 @@
    kind="reset"
    version="17.0"
    start="nios2_processor.jtag_debug_module_reset"
-   end="switches.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="nios2_processor.jtag_debug_module_reset"
-   end="LEDs.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="nios2_processor.jtag_debug_module_reset"
    end="jtag_uart.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="targetDirection.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="driveSpeedPercentage.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="swivelDistance.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="encoderInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="swivelDirection.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="reverse.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="FRSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="FLSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="RSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="LSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="BLSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="BRSensorInCM.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="leftMagnetic.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="rightMagnetic.reset" />
  <connection
    kind="reset"
    version="17.0"

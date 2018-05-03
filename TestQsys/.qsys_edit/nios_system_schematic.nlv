@@ -2,18 +2,18 @@
 # 
 preplace inst nios_system -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst nios_system.onchip_memory -pg 1 -lvl 3 -y 130
-preplace inst nios_system.nios2_processor -pg 1 -lvl 1 -y 70
+preplace inst nios_system.nios2_processor -pg 1 -lvl 1 -y 50
 preplace inst nios_system.LEDs -pg 1 -lvl 3 -y 210
 preplace inst nios_system.switches -pg 1 -lvl 3 -y 310
 preplace inst nios_system.jtag_uart -pg 1 -lvl 3 -y 30
 preplace inst nios_system.clk_0 -pg 1 -lvl 2 -y 270
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)nios_system.reset) 1 0 2 NJ 260 NJ
-preplace netloc INTERCONNECT<net_container>nios_system</net_container>(SLAVE)switches.reset,(SLAVE)nios2_processor.reset_n,(SLAVE)LEDs.reset,(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory.reset1,(MASTER)nios2_processor.jtag_debug_module_reset,(SLAVE)jtag_uart.reset) 1 0 3 110 220 360 180 740
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)nios_system.reset) 1 0 2 NJ 280 NJ
+preplace netloc INTERCONNECT<net_container>nios_system</net_container>(MASTER)nios2_processor.instruction_master,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)nios2_processor.jtag_debug_module,(SLAVE)onchip_memory.s1,(MASTER)nios2_processor.data_master,(SLAVE)LEDs.s1,(SLAVE)switches.s1) 1 0 3 130 180 420 120 720
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.clk,(SLAVE)clk_0.clk_in) 1 0 2 NJ 300 NJ
-preplace netloc POINT_TO_POINT<net_container>nios_system</net_container>(MASTER)nios2_processor.d_irq,(SLAVE)jtag_uart.irq) 1 1 2 NJ 100 700
-preplace netloc FAN_OUT<net_container>nios_system</net_container>(SLAVE)jtag_uart.clk,(SLAVE)LEDs.clk,(SLAVE)switches.clk,(SLAVE)onchip_memory.clk1,(MASTER)clk_0.clk,(SLAVE)nios2_processor.clk) 1 0 3 90 60 NJ 60 720
-preplace netloc INTERCONNECT<net_container>nios_system</net_container>(SLAVE)onchip_memory.s1,(SLAVE)switches.s1,(MASTER)nios2_processor.instruction_master,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)nios2_processor.jtag_debug_module,(SLAVE)LEDs.s1,(MASTER)nios2_processor.data_master) 1 0 3 90 200 400 150 680
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)switches.external_connection,(SLAVE)nios_system.switches) 1 0 3 NJ 280 NJ 260 NJ
+preplace netloc POINT_TO_POINT<net_container>nios_system</net_container>(MASTER)nios2_processor.d_irq,(SLAVE)jtag_uart.irq) 1 1 2 NJ 80 N
+preplace netloc FAN_OUT<net_container>nios_system</net_container>(SLAVE)switches.clk,(SLAVE)jtag_uart.clk,(SLAVE)onchip_memory.clk1,(MASTER)clk_0.clk,(SLAVE)nios2_processor.clk,(SLAVE)LEDs.clk) 1 0 3 110 260 NJ 260 700
+preplace netloc INTERCONNECT<net_container>nios_system</net_container>(MASTER)clk_0.clk_reset,(SLAVE)onchip_memory.reset1,(MASTER)nios2_processor.jtag_debug_module_reset,(SLAVE)LEDs.reset,(SLAVE)switches.reset,(SLAVE)jtag_uart.reset,(SLAVE)nios2_processor.reset_n) 1 0 3 150 200 400 160 740
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.switches,(SLAVE)switches.external_connection) 1 0 3 NJ 340 NJ 340 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)LEDs.external_connection,(SLAVE)nios_system.leds) 1 0 3 NJ 240 NJ 240 NJ
-levelinfo -pg 1 0 60 940
-levelinfo -hier nios_system 70 140 490 780 930
+levelinfo -pg 1 0 60 980
+levelinfo -hier nios_system 70 180 530 820 970
