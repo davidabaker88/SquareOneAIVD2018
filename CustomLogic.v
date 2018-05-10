@@ -49,6 +49,7 @@ Steering Steering(
 .CLOCK_50(CLOCK_50),
 .targetDirection(targetDirection),
 .reset_Pos(steeringReset),
+.reset(KEY[0]),
 
 //outputs
 .targetDirection_Ard(GPIO_0[17]),
