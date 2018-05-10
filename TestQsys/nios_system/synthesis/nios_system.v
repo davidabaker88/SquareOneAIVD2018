@@ -4,10 +4,26 @@
 
 `timescale 1 ps / 1 ps
 module nios_system (
-		input  wire       clk_clk,         //      clk.clk
-		output wire [7:0] leds_export,     //     leds.export
-		input  wire       reset_reset_n,   //    reset.reset_n
-		input  wire [7:0] switches_export  // switches.export
+		output wire [8:0]  blsensorincm_export,         //         blsensorincm.export
+		output wire [8:0]  brsensorincm_export,         //         brsensorincm.export
+		input  wire        clk_clk,                     //                  clk.clk
+		output wire [6:0]  drivespeedpercentage_export, // drivespeedpercentage.export
+		input  wire [31:0] encoderincm_export,          //          encoderincm.export
+		output wire        encoderreset_export,         //         encoderreset.export
+		output wire [8:0]  flsensorincm_export,         //         flsensorincm.export
+		input  wire [8:0]  frsensorincm_export,         //         frsensorincm.export
+		output wire        greenlight_export,           //           greenlight.export
+		output wire [7:0]  leftmagnetic_export,         //         leftmagnetic.export
+		output wire [8:0]  lsensorincm_export,          //          lsensorincm.export
+		input  wire        redlight_export,             //             redlight.export
+		input  wire        reset_reset_n,               //                reset.reset_n
+		output wire        reverse_export,              //              reverse.export
+		output wire [7:0]  rightmagnetic_export,        //        rightmagnetic.export
+		output wire [8:0]  rsensorincm_export,          //          rsensorincm.export
+		output wire        swiveldirection_export,      //      swiveldirection.export
+		output wire [7:0]  swiveldistacne_export,       //       swiveldistacne.export
+		output wire [8:0]  targetdirection_export,      //      targetdirection.export
+		output wire        yellowlight_export           //          yellowlight.export
 	);
 
 	wire  [31:0] nios2_processor_data_master_readdata;                            // mm_interconnect_0:nios2_processor_data_master_readdata -> nios2_processor:d_readdata
@@ -44,28 +60,195 @@ module nios_system (
 	wire         mm_interconnect_0_onchip_memory_s1_write;                        // mm_interconnect_0:onchip_memory_s1_write -> onchip_memory:write
 	wire  [31:0] mm_interconnect_0_onchip_memory_s1_writedata;                    // mm_interconnect_0:onchip_memory_s1_writedata -> onchip_memory:writedata
 	wire         mm_interconnect_0_onchip_memory_s1_clken;                        // mm_interconnect_0:onchip_memory_s1_clken -> onchip_memory:clken
-	wire  [31:0] mm_interconnect_0_switches_s1_readdata;                          // switches:readdata -> mm_interconnect_0:switches_s1_readdata
-	wire   [1:0] mm_interconnect_0_switches_s1_address;                           // mm_interconnect_0:switches_s1_address -> switches:address
-	wire         mm_interconnect_0_leds_s1_chipselect;                            // mm_interconnect_0:LEDs_s1_chipselect -> LEDs:chipselect
-	wire  [31:0] mm_interconnect_0_leds_s1_readdata;                              // LEDs:readdata -> mm_interconnect_0:LEDs_s1_readdata
-	wire   [1:0] mm_interconnect_0_leds_s1_address;                               // mm_interconnect_0:LEDs_s1_address -> LEDs:address
-	wire         mm_interconnect_0_leds_s1_write;                                 // mm_interconnect_0:LEDs_s1_write -> LEDs:write_n
-	wire  [31:0] mm_interconnect_0_leds_s1_writedata;                             // mm_interconnect_0:LEDs_s1_writedata -> LEDs:writedata
+	wire         mm_interconnect_0_targetdirection_s1_chipselect;                 // mm_interconnect_0:targetDirection_s1_chipselect -> targetDirection:chipselect
+	wire  [31:0] mm_interconnect_0_targetdirection_s1_readdata;                   // targetDirection:readdata -> mm_interconnect_0:targetDirection_s1_readdata
+	wire   [1:0] mm_interconnect_0_targetdirection_s1_address;                    // mm_interconnect_0:targetDirection_s1_address -> targetDirection:address
+	wire         mm_interconnect_0_targetdirection_s1_write;                      // mm_interconnect_0:targetDirection_s1_write -> targetDirection:write_n
+	wire  [31:0] mm_interconnect_0_targetdirection_s1_writedata;                  // mm_interconnect_0:targetDirection_s1_writedata -> targetDirection:writedata
+	wire         mm_interconnect_0_drivespeedpercentage_s1_chipselect;            // mm_interconnect_0:driveSpeedPercentage_s1_chipselect -> driveSpeedPercentage:chipselect
+	wire  [31:0] mm_interconnect_0_drivespeedpercentage_s1_readdata;              // driveSpeedPercentage:readdata -> mm_interconnect_0:driveSpeedPercentage_s1_readdata
+	wire   [1:0] mm_interconnect_0_drivespeedpercentage_s1_address;               // mm_interconnect_0:driveSpeedPercentage_s1_address -> driveSpeedPercentage:address
+	wire         mm_interconnect_0_drivespeedpercentage_s1_write;                 // mm_interconnect_0:driveSpeedPercentage_s1_write -> driveSpeedPercentage:write_n
+	wire  [31:0] mm_interconnect_0_drivespeedpercentage_s1_writedata;             // mm_interconnect_0:driveSpeedPercentage_s1_writedata -> driveSpeedPercentage:writedata
+	wire         mm_interconnect_0_swiveldistance_s1_chipselect;                  // mm_interconnect_0:swivelDistance_s1_chipselect -> swivelDistance:chipselect
+	wire  [31:0] mm_interconnect_0_swiveldistance_s1_readdata;                    // swivelDistance:readdata -> mm_interconnect_0:swivelDistance_s1_readdata
+	wire   [1:0] mm_interconnect_0_swiveldistance_s1_address;                     // mm_interconnect_0:swivelDistance_s1_address -> swivelDistance:address
+	wire         mm_interconnect_0_swiveldistance_s1_write;                       // mm_interconnect_0:swivelDistance_s1_write -> swivelDistance:write_n
+	wire  [31:0] mm_interconnect_0_swiveldistance_s1_writedata;                   // mm_interconnect_0:swivelDistance_s1_writedata -> swivelDistance:writedata
+	wire  [31:0] mm_interconnect_0_encoderincm_s1_readdata;                       // encoderInCM:readdata -> mm_interconnect_0:encoderInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_encoderincm_s1_address;                        // mm_interconnect_0:encoderInCM_s1_address -> encoderInCM:address
+	wire         mm_interconnect_0_swiveldirection_s1_chipselect;                 // mm_interconnect_0:swivelDirection_s1_chipselect -> swivelDirection:chipselect
+	wire  [31:0] mm_interconnect_0_swiveldirection_s1_readdata;                   // swivelDirection:readdata -> mm_interconnect_0:swivelDirection_s1_readdata
+	wire   [1:0] mm_interconnect_0_swiveldirection_s1_address;                    // mm_interconnect_0:swivelDirection_s1_address -> swivelDirection:address
+	wire         mm_interconnect_0_swiveldirection_s1_write;                      // mm_interconnect_0:swivelDirection_s1_write -> swivelDirection:write_n
+	wire  [31:0] mm_interconnect_0_swiveldirection_s1_writedata;                  // mm_interconnect_0:swivelDirection_s1_writedata -> swivelDirection:writedata
+	wire         mm_interconnect_0_reverse_s1_chipselect;                         // mm_interconnect_0:reverse_s1_chipselect -> reverse:chipselect
+	wire  [31:0] mm_interconnect_0_reverse_s1_readdata;                           // reverse:readdata -> mm_interconnect_0:reverse_s1_readdata
+	wire   [1:0] mm_interconnect_0_reverse_s1_address;                            // mm_interconnect_0:reverse_s1_address -> reverse:address
+	wire         mm_interconnect_0_reverse_s1_write;                              // mm_interconnect_0:reverse_s1_write -> reverse:write_n
+	wire  [31:0] mm_interconnect_0_reverse_s1_writedata;                          // mm_interconnect_0:reverse_s1_writedata -> reverse:writedata
+	wire  [31:0] mm_interconnect_0_frsensorincm_s1_readdata;                      // FRSensorInCM:readdata -> mm_interconnect_0:FRSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_frsensorincm_s1_address;                       // mm_interconnect_0:FRSensorInCM_s1_address -> FRSensorInCM:address
+	wire         mm_interconnect_0_flsensorincm_s1_chipselect;                    // mm_interconnect_0:FLSensorInCM_s1_chipselect -> FLSensorInCM:chipselect
+	wire  [31:0] mm_interconnect_0_flsensorincm_s1_readdata;                      // FLSensorInCM:readdata -> mm_interconnect_0:FLSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_flsensorincm_s1_address;                       // mm_interconnect_0:FLSensorInCM_s1_address -> FLSensorInCM:address
+	wire         mm_interconnect_0_flsensorincm_s1_write;                         // mm_interconnect_0:FLSensorInCM_s1_write -> FLSensorInCM:write_n
+	wire  [31:0] mm_interconnect_0_flsensorincm_s1_writedata;                     // mm_interconnect_0:FLSensorInCM_s1_writedata -> FLSensorInCM:writedata
+	wire         mm_interconnect_0_rsensorincm_s1_chipselect;                     // mm_interconnect_0:RSensorInCM_s1_chipselect -> RSensorInCM:chipselect
+	wire  [31:0] mm_interconnect_0_rsensorincm_s1_readdata;                       // RSensorInCM:readdata -> mm_interconnect_0:RSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_rsensorincm_s1_address;                        // mm_interconnect_0:RSensorInCM_s1_address -> RSensorInCM:address
+	wire         mm_interconnect_0_rsensorincm_s1_write;                          // mm_interconnect_0:RSensorInCM_s1_write -> RSensorInCM:write_n
+	wire  [31:0] mm_interconnect_0_rsensorincm_s1_writedata;                      // mm_interconnect_0:RSensorInCM_s1_writedata -> RSensorInCM:writedata
+	wire         mm_interconnect_0_lsensorincm_s1_chipselect;                     // mm_interconnect_0:LSensorInCM_s1_chipselect -> LSensorInCM:chipselect
+	wire  [31:0] mm_interconnect_0_lsensorincm_s1_readdata;                       // LSensorInCM:readdata -> mm_interconnect_0:LSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_lsensorincm_s1_address;                        // mm_interconnect_0:LSensorInCM_s1_address -> LSensorInCM:address
+	wire         mm_interconnect_0_lsensorincm_s1_write;                          // mm_interconnect_0:LSensorInCM_s1_write -> LSensorInCM:write_n
+	wire  [31:0] mm_interconnect_0_lsensorincm_s1_writedata;                      // mm_interconnect_0:LSensorInCM_s1_writedata -> LSensorInCM:writedata
+	wire         mm_interconnect_0_blsensorincm_s1_chipselect;                    // mm_interconnect_0:BLSensorInCM_s1_chipselect -> BLSensorInCM:chipselect
+	wire  [31:0] mm_interconnect_0_blsensorincm_s1_readdata;                      // BLSensorInCM:readdata -> mm_interconnect_0:BLSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_blsensorincm_s1_address;                       // mm_interconnect_0:BLSensorInCM_s1_address -> BLSensorInCM:address
+	wire         mm_interconnect_0_blsensorincm_s1_write;                         // mm_interconnect_0:BLSensorInCM_s1_write -> BLSensorInCM:write_n
+	wire  [31:0] mm_interconnect_0_blsensorincm_s1_writedata;                     // mm_interconnect_0:BLSensorInCM_s1_writedata -> BLSensorInCM:writedata
+	wire         mm_interconnect_0_brsensorincm_s1_chipselect;                    // mm_interconnect_0:BRSensorInCM_s1_chipselect -> BRSensorInCM:chipselect
+	wire  [31:0] mm_interconnect_0_brsensorincm_s1_readdata;                      // BRSensorInCM:readdata -> mm_interconnect_0:BRSensorInCM_s1_readdata
+	wire   [1:0] mm_interconnect_0_brsensorincm_s1_address;                       // mm_interconnect_0:BRSensorInCM_s1_address -> BRSensorInCM:address
+	wire         mm_interconnect_0_brsensorincm_s1_write;                         // mm_interconnect_0:BRSensorInCM_s1_write -> BRSensorInCM:write_n
+	wire  [31:0] mm_interconnect_0_brsensorincm_s1_writedata;                     // mm_interconnect_0:BRSensorInCM_s1_writedata -> BRSensorInCM:writedata
+	wire         mm_interconnect_0_leftmagnetic_s1_chipselect;                    // mm_interconnect_0:leftMagnetic_s1_chipselect -> leftMagnetic:chipselect
+	wire  [31:0] mm_interconnect_0_leftmagnetic_s1_readdata;                      // leftMagnetic:readdata -> mm_interconnect_0:leftMagnetic_s1_readdata
+	wire   [1:0] mm_interconnect_0_leftmagnetic_s1_address;                       // mm_interconnect_0:leftMagnetic_s1_address -> leftMagnetic:address
+	wire         mm_interconnect_0_leftmagnetic_s1_write;                         // mm_interconnect_0:leftMagnetic_s1_write -> leftMagnetic:write_n
+	wire  [31:0] mm_interconnect_0_leftmagnetic_s1_writedata;                     // mm_interconnect_0:leftMagnetic_s1_writedata -> leftMagnetic:writedata
+	wire         mm_interconnect_0_rightmagnetic_s1_chipselect;                   // mm_interconnect_0:rightMagnetic_s1_chipselect -> rightMagnetic:chipselect
+	wire  [31:0] mm_interconnect_0_rightmagnetic_s1_readdata;                     // rightMagnetic:readdata -> mm_interconnect_0:rightMagnetic_s1_readdata
+	wire   [1:0] mm_interconnect_0_rightmagnetic_s1_address;                      // mm_interconnect_0:rightMagnetic_s1_address -> rightMagnetic:address
+	wire         mm_interconnect_0_rightmagnetic_s1_write;                        // mm_interconnect_0:rightMagnetic_s1_write -> rightMagnetic:write_n
+	wire  [31:0] mm_interconnect_0_rightmagnetic_s1_writedata;                    // mm_interconnect_0:rightMagnetic_s1_writedata -> rightMagnetic:writedata
+	wire         mm_interconnect_0_encoderreset_s1_chipselect;                    // mm_interconnect_0:encoderReset_s1_chipselect -> encoderReset:chipselect
+	wire  [31:0] mm_interconnect_0_encoderreset_s1_readdata;                      // encoderReset:readdata -> mm_interconnect_0:encoderReset_s1_readdata
+	wire   [1:0] mm_interconnect_0_encoderreset_s1_address;                       // mm_interconnect_0:encoderReset_s1_address -> encoderReset:address
+	wire         mm_interconnect_0_encoderreset_s1_write;                         // mm_interconnect_0:encoderReset_s1_write -> encoderReset:write_n
+	wire  [31:0] mm_interconnect_0_encoderreset_s1_writedata;                     // mm_interconnect_0:encoderReset_s1_writedata -> encoderReset:writedata
+	wire  [31:0] mm_interconnect_0_redlight_s1_readdata;                          // redLight:readdata -> mm_interconnect_0:redLight_s1_readdata
+	wire   [1:0] mm_interconnect_0_redlight_s1_address;                           // mm_interconnect_0:redLight_s1_address -> redLight:address
+	wire         mm_interconnect_0_yellowlight_s1_chipselect;                     // mm_interconnect_0:yellowLight_s1_chipselect -> yellowLight:chipselect
+	wire  [31:0] mm_interconnect_0_yellowlight_s1_readdata;                       // yellowLight:readdata -> mm_interconnect_0:yellowLight_s1_readdata
+	wire   [1:0] mm_interconnect_0_yellowlight_s1_address;                        // mm_interconnect_0:yellowLight_s1_address -> yellowLight:address
+	wire         mm_interconnect_0_yellowlight_s1_write;                          // mm_interconnect_0:yellowLight_s1_write -> yellowLight:write_n
+	wire  [31:0] mm_interconnect_0_yellowlight_s1_writedata;                      // mm_interconnect_0:yellowLight_s1_writedata -> yellowLight:writedata
+	wire         mm_interconnect_0_greenlight_s1_chipselect;                      // mm_interconnect_0:greenLight_s1_chipselect -> greenLight:chipselect
+	wire  [31:0] mm_interconnect_0_greenlight_s1_readdata;                        // greenLight:readdata -> mm_interconnect_0:greenLight_s1_readdata
+	wire   [1:0] mm_interconnect_0_greenlight_s1_address;                         // mm_interconnect_0:greenLight_s1_address -> greenLight:address
+	wire         mm_interconnect_0_greenlight_s1_write;                           // mm_interconnect_0:greenLight_s1_write -> greenLight:write_n
+	wire  [31:0] mm_interconnect_0_greenlight_s1_writedata;                       // mm_interconnect_0:greenLight_s1_writedata -> greenLight:writedata
 	wire         irq_mapper_receiver0_irq;                                        // jtag_uart:av_irq -> irq_mapper:receiver0_irq
 	wire  [31:0] nios2_processor_d_irq_irq;                                       // irq_mapper:sender_irq -> nios2_processor:d_irq
-	wire         rst_controller_reset_out_reset;                                  // rst_controller:reset_out -> [LEDs:reset_n, irq_mapper:reset, jtag_uart:rst_n, mm_interconnect_0:nios2_processor_reset_n_reset_bridge_in_reset_reset, nios2_processor:reset_n, onchip_memory:reset, rst_translator:in_reset, switches:reset_n]
+	wire         rst_controller_reset_out_reset;                                  // rst_controller:reset_out -> [BLSensorInCM:reset_n, BRSensorInCM:reset_n, FLSensorInCM:reset_n, FRSensorInCM:reset_n, LSensorInCM:reset_n, RSensorInCM:reset_n, driveSpeedPercentage:reset_n, encoderInCM:reset_n, encoderReset:reset_n, greenLight:reset_n, irq_mapper:reset, jtag_uart:rst_n, leftMagnetic:reset_n, mm_interconnect_0:nios2_processor_reset_n_reset_bridge_in_reset_reset, nios2_processor:reset_n, onchip_memory:reset, redLight:reset_n, reverse:reset_n, rightMagnetic:reset_n, rst_translator:in_reset, swivelDirection:reset_n, swivelDistance:reset_n, targetDirection:reset_n, yellowLight:reset_n]
 	wire         rst_controller_reset_out_reset_req;                              // rst_controller:reset_req -> [nios2_processor:reset_req, onchip_memory:reset_req, rst_translator:reset_req_in]
 	wire         nios2_processor_jtag_debug_module_reset_reset;                   // nios2_processor:jtag_debug_module_resetrequest -> rst_controller:reset_in1
 
-	nios_system_LEDs leds (
-		.clk        (clk_clk),                              //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),      //               reset.reset_n
-		.address    (mm_interconnect_0_leds_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_0_leds_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_0_leds_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_0_leds_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_0_leds_s1_readdata),   //                    .readdata
-		.out_port   (leds_export)                           // external_connection.export
+	nios_system_BLSensorInCM blsensorincm (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_blsensorincm_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_blsensorincm_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_blsensorincm_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_blsensorincm_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_blsensorincm_s1_readdata),   //                    .readdata
+		.out_port   (blsensorincm_export)                           // external_connection.export
+	);
+
+	nios_system_BLSensorInCM brsensorincm (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_brsensorincm_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_brsensorincm_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_brsensorincm_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_brsensorincm_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_brsensorincm_s1_readdata),   //                    .readdata
+		.out_port   (brsensorincm_export)                           // external_connection.export
+	);
+
+	nios_system_BLSensorInCM flsensorincm (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_flsensorincm_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_flsensorincm_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_flsensorincm_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_flsensorincm_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_flsensorincm_s1_readdata),   //                    .readdata
+		.out_port   (flsensorincm_export)                           // external_connection.export
+	);
+
+	nios_system_FRSensorInCM frsensorincm (
+		.clk      (clk_clk),                                    //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),            //               reset.reset_n
+		.address  (mm_interconnect_0_frsensorincm_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_frsensorincm_s1_readdata), //                    .readdata
+		.in_port  (frsensorincm_export)                         // external_connection.export
+	);
+
+	nios_system_BLSensorInCM lsensorincm (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_lsensorincm_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_lsensorincm_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_lsensorincm_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_lsensorincm_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_lsensorincm_s1_readdata),   //                    .readdata
+		.out_port   (lsensorincm_export)                           // external_connection.export
+	);
+
+	nios_system_BLSensorInCM rsensorincm (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_rsensorincm_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_rsensorincm_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_rsensorincm_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_rsensorincm_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_rsensorincm_s1_readdata),   //                    .readdata
+		.out_port   (rsensorincm_export)                           // external_connection.export
+	);
+
+	nios_system_driveSpeedPercentage drivespeedpercentage (
+		.clk        (clk_clk),                                              //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                      //               reset.reset_n
+		.address    (mm_interconnect_0_drivespeedpercentage_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_drivespeedpercentage_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_drivespeedpercentage_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_drivespeedpercentage_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_drivespeedpercentage_s1_readdata),   //                    .readdata
+		.out_port   (drivespeedpercentage_export)                           // external_connection.export
+	);
+
+	nios_system_encoderInCM encoderincm (
+		.clk      (clk_clk),                                   //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),           //               reset.reset_n
+		.address  (mm_interconnect_0_encoderincm_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_encoderincm_s1_readdata), //                    .readdata
+		.in_port  (encoderincm_export)                         // external_connection.export
+	);
+
+	nios_system_encoderReset encoderreset (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_encoderreset_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_encoderreset_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_encoderreset_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_encoderreset_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_encoderreset_s1_readdata),   //                    .readdata
+		.out_port   (encoderreset_export)                           // external_connection.export
+	);
+
+	nios_system_encoderReset greenlight (
+		.clk        (clk_clk),                                    //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),            //               reset.reset_n
+		.address    (mm_interconnect_0_greenlight_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_greenlight_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_greenlight_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_greenlight_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_greenlight_s1_readdata),   //                    .readdata
+		.out_port   (greenlight_export)                           // external_connection.export
 	);
 
 	nios_system_jtag_uart jtag_uart (
@@ -79,6 +262,17 @@ module nios_system (
 		.av_writedata   (mm_interconnect_0_jtag_uart_avalon_jtag_slave_writedata),   //                  .writedata
 		.av_waitrequest (mm_interconnect_0_jtag_uart_avalon_jtag_slave_waitrequest), //                  .waitrequest
 		.av_irq         (irq_mapper_receiver0_irq)                                   //               irq.irq
+	);
+
+	nios_system_leftMagnetic leftmagnetic (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_leftmagnetic_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_leftmagnetic_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_leftmagnetic_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_leftmagnetic_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_leftmagnetic_s1_readdata),   //                    .readdata
+		.out_port   (leftmagnetic_export)                           // external_connection.export
 	);
 
 	nios_system_nios2_processor nios2_processor (
@@ -124,12 +318,78 @@ module nios_system (
 		.freeze     (1'b0)                                           // (terminated)
 	);
 
-	nios_system_switches switches (
+	nios_system_redLight redlight (
 		.clk      (clk_clk),                                //                 clk.clk
 		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
-		.address  (mm_interconnect_0_switches_s1_address),  //                  s1.address
-		.readdata (mm_interconnect_0_switches_s1_readdata), //                    .readdata
-		.in_port  (switches_export)                         // external_connection.export
+		.address  (mm_interconnect_0_redlight_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_redlight_s1_readdata), //                    .readdata
+		.in_port  (redlight_export)                         // external_connection.export
+	);
+
+	nios_system_encoderReset reverse (
+		.clk        (clk_clk),                                 //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),         //               reset.reset_n
+		.address    (mm_interconnect_0_reverse_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_reverse_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_reverse_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_reverse_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_reverse_s1_readdata),   //                    .readdata
+		.out_port   (reverse_export)                           // external_connection.export
+	);
+
+	nios_system_leftMagnetic rightmagnetic (
+		.clk        (clk_clk),                                       //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),               //               reset.reset_n
+		.address    (mm_interconnect_0_rightmagnetic_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_rightmagnetic_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_rightmagnetic_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_rightmagnetic_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_rightmagnetic_s1_readdata),   //                    .readdata
+		.out_port   (rightmagnetic_export)                           // external_connection.export
+	);
+
+	nios_system_encoderReset swiveldirection (
+		.clk        (clk_clk),                                         //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
+		.address    (mm_interconnect_0_swiveldirection_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_swiveldirection_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_swiveldirection_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_swiveldirection_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_swiveldirection_s1_readdata),   //                    .readdata
+		.out_port   (swiveldirection_export)                           // external_connection.export
+	);
+
+	nios_system_leftMagnetic swiveldistance (
+		.clk        (clk_clk),                                        //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                //               reset.reset_n
+		.address    (mm_interconnect_0_swiveldistance_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_swiveldistance_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_swiveldistance_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_swiveldistance_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_swiveldistance_s1_readdata),   //                    .readdata
+		.out_port   (swiveldistacne_export)                           // external_connection.export
+	);
+
+	nios_system_BLSensorInCM targetdirection (
+		.clk        (clk_clk),                                         //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),                 //               reset.reset_n
+		.address    (mm_interconnect_0_targetdirection_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_targetdirection_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_targetdirection_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_targetdirection_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_targetdirection_s1_readdata),   //                    .readdata
+		.out_port   (targetdirection_export)                           // external_connection.export
+	);
+
+	nios_system_encoderReset yellowlight (
+		.clk        (clk_clk),                                     //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
+		.address    (mm_interconnect_0_yellowlight_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_yellowlight_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_yellowlight_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_yellowlight_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_yellowlight_s1_readdata),   //                    .readdata
+		.out_port   (yellowlight_export)                           // external_connection.export
 	);
 
 	nios_system_mm_interconnect_0 mm_interconnect_0 (
@@ -147,6 +407,40 @@ module nios_system (
 		.nios2_processor_instruction_master_waitrequest      (nios2_processor_instruction_master_waitrequest),                  //                                              .waitrequest
 		.nios2_processor_instruction_master_read             (nios2_processor_instruction_master_read),                         //                                              .read
 		.nios2_processor_instruction_master_readdata         (nios2_processor_instruction_master_readdata),                     //                                              .readdata
+		.BLSensorInCM_s1_address                             (mm_interconnect_0_blsensorincm_s1_address),                       //                               BLSensorInCM_s1.address
+		.BLSensorInCM_s1_write                               (mm_interconnect_0_blsensorincm_s1_write),                         //                                              .write
+		.BLSensorInCM_s1_readdata                            (mm_interconnect_0_blsensorincm_s1_readdata),                      //                                              .readdata
+		.BLSensorInCM_s1_writedata                           (mm_interconnect_0_blsensorincm_s1_writedata),                     //                                              .writedata
+		.BLSensorInCM_s1_chipselect                          (mm_interconnect_0_blsensorincm_s1_chipselect),                    //                                              .chipselect
+		.BRSensorInCM_s1_address                             (mm_interconnect_0_brsensorincm_s1_address),                       //                               BRSensorInCM_s1.address
+		.BRSensorInCM_s1_write                               (mm_interconnect_0_brsensorincm_s1_write),                         //                                              .write
+		.BRSensorInCM_s1_readdata                            (mm_interconnect_0_brsensorincm_s1_readdata),                      //                                              .readdata
+		.BRSensorInCM_s1_writedata                           (mm_interconnect_0_brsensorincm_s1_writedata),                     //                                              .writedata
+		.BRSensorInCM_s1_chipselect                          (mm_interconnect_0_brsensorincm_s1_chipselect),                    //                                              .chipselect
+		.driveSpeedPercentage_s1_address                     (mm_interconnect_0_drivespeedpercentage_s1_address),               //                       driveSpeedPercentage_s1.address
+		.driveSpeedPercentage_s1_write                       (mm_interconnect_0_drivespeedpercentage_s1_write),                 //                                              .write
+		.driveSpeedPercentage_s1_readdata                    (mm_interconnect_0_drivespeedpercentage_s1_readdata),              //                                              .readdata
+		.driveSpeedPercentage_s1_writedata                   (mm_interconnect_0_drivespeedpercentage_s1_writedata),             //                                              .writedata
+		.driveSpeedPercentage_s1_chipselect                  (mm_interconnect_0_drivespeedpercentage_s1_chipselect),            //                                              .chipselect
+		.encoderInCM_s1_address                              (mm_interconnect_0_encoderincm_s1_address),                        //                                encoderInCM_s1.address
+		.encoderInCM_s1_readdata                             (mm_interconnect_0_encoderincm_s1_readdata),                       //                                              .readdata
+		.encoderReset_s1_address                             (mm_interconnect_0_encoderreset_s1_address),                       //                               encoderReset_s1.address
+		.encoderReset_s1_write                               (mm_interconnect_0_encoderreset_s1_write),                         //                                              .write
+		.encoderReset_s1_readdata                            (mm_interconnect_0_encoderreset_s1_readdata),                      //                                              .readdata
+		.encoderReset_s1_writedata                           (mm_interconnect_0_encoderreset_s1_writedata),                     //                                              .writedata
+		.encoderReset_s1_chipselect                          (mm_interconnect_0_encoderreset_s1_chipselect),                    //                                              .chipselect
+		.FLSensorInCM_s1_address                             (mm_interconnect_0_flsensorincm_s1_address),                       //                               FLSensorInCM_s1.address
+		.FLSensorInCM_s1_write                               (mm_interconnect_0_flsensorincm_s1_write),                         //                                              .write
+		.FLSensorInCM_s1_readdata                            (mm_interconnect_0_flsensorincm_s1_readdata),                      //                                              .readdata
+		.FLSensorInCM_s1_writedata                           (mm_interconnect_0_flsensorincm_s1_writedata),                     //                                              .writedata
+		.FLSensorInCM_s1_chipselect                          (mm_interconnect_0_flsensorincm_s1_chipselect),                    //                                              .chipselect
+		.FRSensorInCM_s1_address                             (mm_interconnect_0_frsensorincm_s1_address),                       //                               FRSensorInCM_s1.address
+		.FRSensorInCM_s1_readdata                            (mm_interconnect_0_frsensorincm_s1_readdata),                      //                                              .readdata
+		.greenLight_s1_address                               (mm_interconnect_0_greenlight_s1_address),                         //                                 greenLight_s1.address
+		.greenLight_s1_write                                 (mm_interconnect_0_greenlight_s1_write),                           //                                              .write
+		.greenLight_s1_readdata                              (mm_interconnect_0_greenlight_s1_readdata),                        //                                              .readdata
+		.greenLight_s1_writedata                             (mm_interconnect_0_greenlight_s1_writedata),                       //                                              .writedata
+		.greenLight_s1_chipselect                            (mm_interconnect_0_greenlight_s1_chipselect),                      //                                              .chipselect
 		.jtag_uart_avalon_jtag_slave_address                 (mm_interconnect_0_jtag_uart_avalon_jtag_slave_address),           //                   jtag_uart_avalon_jtag_slave.address
 		.jtag_uart_avalon_jtag_slave_write                   (mm_interconnect_0_jtag_uart_avalon_jtag_slave_write),             //                                              .write
 		.jtag_uart_avalon_jtag_slave_read                    (mm_interconnect_0_jtag_uart_avalon_jtag_slave_read),              //                                              .read
@@ -154,11 +448,16 @@ module nios_system (
 		.jtag_uart_avalon_jtag_slave_writedata               (mm_interconnect_0_jtag_uart_avalon_jtag_slave_writedata),         //                                              .writedata
 		.jtag_uart_avalon_jtag_slave_waitrequest             (mm_interconnect_0_jtag_uart_avalon_jtag_slave_waitrequest),       //                                              .waitrequest
 		.jtag_uart_avalon_jtag_slave_chipselect              (mm_interconnect_0_jtag_uart_avalon_jtag_slave_chipselect),        //                                              .chipselect
-		.LEDs_s1_address                                     (mm_interconnect_0_leds_s1_address),                               //                                       LEDs_s1.address
-		.LEDs_s1_write                                       (mm_interconnect_0_leds_s1_write),                                 //                                              .write
-		.LEDs_s1_readdata                                    (mm_interconnect_0_leds_s1_readdata),                              //                                              .readdata
-		.LEDs_s1_writedata                                   (mm_interconnect_0_leds_s1_writedata),                             //                                              .writedata
-		.LEDs_s1_chipselect                                  (mm_interconnect_0_leds_s1_chipselect),                            //                                              .chipselect
+		.leftMagnetic_s1_address                             (mm_interconnect_0_leftmagnetic_s1_address),                       //                               leftMagnetic_s1.address
+		.leftMagnetic_s1_write                               (mm_interconnect_0_leftmagnetic_s1_write),                         //                                              .write
+		.leftMagnetic_s1_readdata                            (mm_interconnect_0_leftmagnetic_s1_readdata),                      //                                              .readdata
+		.leftMagnetic_s1_writedata                           (mm_interconnect_0_leftmagnetic_s1_writedata),                     //                                              .writedata
+		.leftMagnetic_s1_chipselect                          (mm_interconnect_0_leftmagnetic_s1_chipselect),                    //                                              .chipselect
+		.LSensorInCM_s1_address                              (mm_interconnect_0_lsensorincm_s1_address),                        //                                LSensorInCM_s1.address
+		.LSensorInCM_s1_write                                (mm_interconnect_0_lsensorincm_s1_write),                          //                                              .write
+		.LSensorInCM_s1_readdata                             (mm_interconnect_0_lsensorincm_s1_readdata),                       //                                              .readdata
+		.LSensorInCM_s1_writedata                            (mm_interconnect_0_lsensorincm_s1_writedata),                      //                                              .writedata
+		.LSensorInCM_s1_chipselect                           (mm_interconnect_0_lsensorincm_s1_chipselect),                     //                                              .chipselect
 		.nios2_processor_jtag_debug_module_address           (mm_interconnect_0_nios2_processor_jtag_debug_module_address),     //             nios2_processor_jtag_debug_module.address
 		.nios2_processor_jtag_debug_module_write             (mm_interconnect_0_nios2_processor_jtag_debug_module_write),       //                                              .write
 		.nios2_processor_jtag_debug_module_read              (mm_interconnect_0_nios2_processor_jtag_debug_module_read),        //                                              .read
@@ -174,8 +473,43 @@ module nios_system (
 		.onchip_memory_s1_byteenable                         (mm_interconnect_0_onchip_memory_s1_byteenable),                   //                                              .byteenable
 		.onchip_memory_s1_chipselect                         (mm_interconnect_0_onchip_memory_s1_chipselect),                   //                                              .chipselect
 		.onchip_memory_s1_clken                              (mm_interconnect_0_onchip_memory_s1_clken),                        //                                              .clken
-		.switches_s1_address                                 (mm_interconnect_0_switches_s1_address),                           //                                   switches_s1.address
-		.switches_s1_readdata                                (mm_interconnect_0_switches_s1_readdata)                           //                                              .readdata
+		.redLight_s1_address                                 (mm_interconnect_0_redlight_s1_address),                           //                                   redLight_s1.address
+		.redLight_s1_readdata                                (mm_interconnect_0_redlight_s1_readdata),                          //                                              .readdata
+		.reverse_s1_address                                  (mm_interconnect_0_reverse_s1_address),                            //                                    reverse_s1.address
+		.reverse_s1_write                                    (mm_interconnect_0_reverse_s1_write),                              //                                              .write
+		.reverse_s1_readdata                                 (mm_interconnect_0_reverse_s1_readdata),                           //                                              .readdata
+		.reverse_s1_writedata                                (mm_interconnect_0_reverse_s1_writedata),                          //                                              .writedata
+		.reverse_s1_chipselect                               (mm_interconnect_0_reverse_s1_chipselect),                         //                                              .chipselect
+		.rightMagnetic_s1_address                            (mm_interconnect_0_rightmagnetic_s1_address),                      //                              rightMagnetic_s1.address
+		.rightMagnetic_s1_write                              (mm_interconnect_0_rightmagnetic_s1_write),                        //                                              .write
+		.rightMagnetic_s1_readdata                           (mm_interconnect_0_rightmagnetic_s1_readdata),                     //                                              .readdata
+		.rightMagnetic_s1_writedata                          (mm_interconnect_0_rightmagnetic_s1_writedata),                    //                                              .writedata
+		.rightMagnetic_s1_chipselect                         (mm_interconnect_0_rightmagnetic_s1_chipselect),                   //                                              .chipselect
+		.RSensorInCM_s1_address                              (mm_interconnect_0_rsensorincm_s1_address),                        //                                RSensorInCM_s1.address
+		.RSensorInCM_s1_write                                (mm_interconnect_0_rsensorincm_s1_write),                          //                                              .write
+		.RSensorInCM_s1_readdata                             (mm_interconnect_0_rsensorincm_s1_readdata),                       //                                              .readdata
+		.RSensorInCM_s1_writedata                            (mm_interconnect_0_rsensorincm_s1_writedata),                      //                                              .writedata
+		.RSensorInCM_s1_chipselect                           (mm_interconnect_0_rsensorincm_s1_chipselect),                     //                                              .chipselect
+		.swivelDirection_s1_address                          (mm_interconnect_0_swiveldirection_s1_address),                    //                            swivelDirection_s1.address
+		.swivelDirection_s1_write                            (mm_interconnect_0_swiveldirection_s1_write),                      //                                              .write
+		.swivelDirection_s1_readdata                         (mm_interconnect_0_swiveldirection_s1_readdata),                   //                                              .readdata
+		.swivelDirection_s1_writedata                        (mm_interconnect_0_swiveldirection_s1_writedata),                  //                                              .writedata
+		.swivelDirection_s1_chipselect                       (mm_interconnect_0_swiveldirection_s1_chipselect),                 //                                              .chipselect
+		.swivelDistance_s1_address                           (mm_interconnect_0_swiveldistance_s1_address),                     //                             swivelDistance_s1.address
+		.swivelDistance_s1_write                             (mm_interconnect_0_swiveldistance_s1_write),                       //                                              .write
+		.swivelDistance_s1_readdata                          (mm_interconnect_0_swiveldistance_s1_readdata),                    //                                              .readdata
+		.swivelDistance_s1_writedata                         (mm_interconnect_0_swiveldistance_s1_writedata),                   //                                              .writedata
+		.swivelDistance_s1_chipselect                        (mm_interconnect_0_swiveldistance_s1_chipselect),                  //                                              .chipselect
+		.targetDirection_s1_address                          (mm_interconnect_0_targetdirection_s1_address),                    //                            targetDirection_s1.address
+		.targetDirection_s1_write                            (mm_interconnect_0_targetdirection_s1_write),                      //                                              .write
+		.targetDirection_s1_readdata                         (mm_interconnect_0_targetdirection_s1_readdata),                   //                                              .readdata
+		.targetDirection_s1_writedata                        (mm_interconnect_0_targetdirection_s1_writedata),                  //                                              .writedata
+		.targetDirection_s1_chipselect                       (mm_interconnect_0_targetdirection_s1_chipselect),                 //                                              .chipselect
+		.yellowLight_s1_address                              (mm_interconnect_0_yellowlight_s1_address),                        //                                yellowLight_s1.address
+		.yellowLight_s1_write                                (mm_interconnect_0_yellowlight_s1_write),                          //                                              .write
+		.yellowLight_s1_readdata                             (mm_interconnect_0_yellowlight_s1_readdata),                       //                                              .readdata
+		.yellowLight_s1_writedata                            (mm_interconnect_0_yellowlight_s1_writedata),                      //                                              .writedata
+		.yellowLight_s1_chipselect                           (mm_interconnect_0_yellowlight_s1_chipselect)                      //                                              .chipselect
 	);
 
 	nios_system_irq_mapper irq_mapper (

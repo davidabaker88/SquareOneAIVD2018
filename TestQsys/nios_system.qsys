@@ -13,35 +13,19 @@
    {
       datum _sortIndex
       {
-         value = "14";
+         value = "12";
          type = "int";
+      }
+   }
+   element BLSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8256";
+         type = "String";
       }
    }
    element BRSensorInCM
-   {
-      datum _sortIndex
-      {
-         value = "15";
-         type = "int";
-      }
-   }
-   element FLSensorInCM
-   {
-      datum _sortIndex
-      {
-         value = "11";
-         type = "int";
-      }
-   }
-   element FRSensorInCM
-   {
-      datum _sortIndex
-      {
-         value = "10";
-         type = "int";
-      }
-   }
-   element LSensorInCM
    {
       datum _sortIndex
       {
@@ -49,12 +33,76 @@
          type = "int";
       }
    }
+   element BRSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8240";
+         type = "String";
+      }
+   }
+   element FLSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element FLSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8304";
+         type = "String";
+      }
+   }
+   element FRSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element FRSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8320";
+         type = "String";
+      }
+   }
+   element LSensorInCM
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element LSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8272";
+         type = "String";
+      }
+   }
    element RSensorInCM
    {
       datum _sortIndex
       {
-         value = "12";
+         value = "10";
          type = "int";
+      }
+   }
+   element RSensorInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8288";
+         type = "String";
       }
    }
    element clk_0
@@ -73,12 +121,44 @@
          type = "int";
       }
    }
+   element driveSpeedPercentage.s1
+   {
+      datum baseAddress
+      {
+         value = "8400";
+         type = "String";
+      }
+   }
    element encoderInCM
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "6";
          type = "int";
+      }
+   }
+   element encoderInCM.s1
+   {
+      datum baseAddress
+      {
+         value = "8368";
+         type = "String";
+      }
+   }
+   element encoderReset
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element encoderReset.s1
+   {
+      datum baseAddress
+      {
+         value = "8192";
+         type = "String";
       }
    }
    element jtag_uart
@@ -93,7 +173,7 @@
    {
       datum baseAddress
       {
-         value = "8224";
+         value = "8432";
          type = "String";
       }
    }
@@ -101,8 +181,16 @@
    {
       datum _sortIndex
       {
-         value = "16";
+         value = "14";
          type = "int";
+      }
+   }
+   element leftMagnetic.s1
+   {
+      datum baseAddress
+      {
+         value = "8224";
+         type = "String";
       }
    }
    element nios2_processor
@@ -146,32 +234,32 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "7";
          type = "int";
+      }
+   }
+   element reverse.s1
+   {
+      datum baseAddress
+      {
+         value = "8336";
+         type = "String";
       }
    }
    element rightMagnetic
    {
       datum _sortIndex
       {
-         value = "17";
+         value = "15";
          type = "int";
       }
    }
-   element swivelDirection
+   element rightMagnetic.s1
    {
-      datum _sortIndex
+      datum baseAddress
       {
-         value = "8";
-         type = "int";
-      }
-   }
-   element swivelDistance
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
+         value = "8208";
+         type = "String";
       }
    }
    element targetDirection
@@ -180,6 +268,14 @@
       {
          value = "4";
          type = "int";
+      }
+   }
+   element targetDirection.s1
+   {
+      datum baseAddress
+      {
+         value = "8416";
+         type = "String";
       }
    }
 }
@@ -225,6 +321,11 @@
    type="conduit"
    dir="end" />
  <interface
+   name="encoderreset"
+   internal="encoderReset.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="flsensorincm"
    internal="FLSensorInCM.external_connection"
    type="conduit"
@@ -258,16 +359,6 @@
  <interface
    name="rsensorincm"
    internal="RSensorInCM.external_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="swiveldirection"
-   internal="swivelDirection.external_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="swiveldistacne"
-   internal="swivelDistance.external_connection"
    type="conduit"
    dir="end" />
  <interface
@@ -426,6 +517,24 @@
   <parameter name="width" value="32" />
  </module>
  <module
+   name="encoderReset"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
+ <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
    version="17.0"
@@ -476,7 +585,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="14" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='BLSensorInCM.s1' start='0x0' end='0x10' /><slave name='BRSensorInCM.s1' start='0x0' end='0x10' /><slave name='FLSensorInCM.s1' start='0x0' end='0x10' /><slave name='FRSensorInCM.s1' start='0x0' end='0x10' /><slave name='LSensorInCM.s1' start='0x0' end='0x10' /><slave name='RSensorInCM.s1' start='0x0' end='0x10' /><slave name='driveSpeedPercentage.s1' start='0x0' end='0x10' /><slave name='encoderInCM.s1' start='0x0' end='0x10' /><slave name='leftMagnetic.s1' start='0x0' end='0x10' /><slave name='reverse.s1' start='0x0' end='0x10' /><slave name='rightMagnetic.s1' start='0x0' end='0x10' /><slave name='swivelDirection.s1' start='0x0' end='0x10' /><slave name='swivelDistance.s1' start='0x0' end='0x10' /><slave name='targetDirection.s1' start='0x0' end='0x10' /><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2020' end='0x2028' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='encoderReset.s1' start='0x2000' end='0x2010' /><slave name='rightMagnetic.s1' start='0x2010' end='0x2020' /><slave name='leftMagnetic.s1' start='0x2020' end='0x2030' /><slave name='BRSensorInCM.s1' start='0x2030' end='0x2040' /><slave name='BLSensorInCM.s1' start='0x2040' end='0x2050' /><slave name='LSensorInCM.s1' start='0x2050' end='0x2060' /><slave name='RSensorInCM.s1' start='0x2060' end='0x2070' /><slave name='FLSensorInCM.s1' start='0x2070' end='0x2080' /><slave name='FRSensorInCM.s1' start='0x2080' end='0x2090' /><slave name='reverse.s1' start='0x2090' end='0x20A0' /><slave name='encoderInCM.s1' start='0x20B0' end='0x20C0' /><slave name='driveSpeedPercentage.s1' start='0x20D0' end='0x20E0' /><slave name='targetDirection.s1' start='0x20E0' end='0x20F0' /><slave name='jtag_uart.avalon_jtag_slave' start='0x20F0' end='0x20F8' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -658,42 +767,6 @@
   <parameter name="width" value="8" />
  </module>
  <module
-   name="swivelDirection"
-   kind="altera_avalon_pio"
-   version="17.0"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="1" />
- </module>
- <module
-   name="swivelDistance"
-   kind="altera_avalon_pio"
-   version="17.0"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="50000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="8" />
- </module>
- <module
    name="targetDirection"
    kind="altera_avalon_pio"
    version="17.0"
@@ -717,7 +790,7 @@
    start="nios2_processor.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2020" />
+  <parameter name="baseAddress" value="0x20f0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -744,7 +817,7 @@
    start="nios2_processor.data_master"
    end="targetDirection.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x20e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -753,16 +826,7 @@
    start="nios2_processor.data_master"
    end="driveSpeedPercentage.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="17.0"
-   start="nios2_processor.data_master"
-   end="swivelDistance.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x20d0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -771,16 +835,7 @@
    start="nios2_processor.data_master"
    end="encoderInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="17.0"
-   start="nios2_processor.data_master"
-   end="swivelDirection.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x20b0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -789,7 +844,7 @@
    start="nios2_processor.data_master"
    end="reverse.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -798,7 +853,7 @@
    start="nios2_processor.data_master"
    end="FRSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2080" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -807,7 +862,7 @@
    start="nios2_processor.data_master"
    end="FLSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -816,7 +871,7 @@
    start="nios2_processor.data_master"
    end="RSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2060" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -825,7 +880,7 @@
    start="nios2_processor.data_master"
    end="LSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2050" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -834,7 +889,7 @@
    start="nios2_processor.data_master"
    end="BLSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2040" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -843,7 +898,7 @@
    start="nios2_processor.data_master"
    end="BRSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2030" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -852,7 +907,7 @@
    start="nios2_processor.data_master"
    end="leftMagnetic.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2020" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -861,7 +916,16 @@
    start="nios2_processor.data_master"
    end="rightMagnetic.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="baseAddress" value="0x2010" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="encoderReset.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -898,17 +962,7 @@
    version="17.0"
    start="clk_0.clk"
    end="driveSpeedPercentage.clk" />
- <connection
-   kind="clock"
-   version="17.0"
-   start="clk_0.clk"
-   end="swivelDistance.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="encoderInCM.clk" />
- <connection
-   kind="clock"
-   version="17.0"
-   start="clk_0.clk"
-   end="swivelDirection.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="reverse.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="FRSensorInCM.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="FLSensorInCM.clk" />
@@ -918,6 +972,7 @@
  <connection kind="clock" version="17.0" start="clk_0.clk" end="BRSensorInCM.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="leftMagnetic.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="rightMagnetic.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="encoderReset.clk" />
  <connection
    kind="clock"
    version="17.0"
@@ -949,17 +1004,7 @@
    kind="reset"
    version="17.0"
    start="clk_0.clk_reset"
-   end="swivelDistance.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="clk_0.clk_reset"
    end="encoderInCM.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="clk_0.clk_reset"
-   end="swivelDirection.reset" />
  <connection
    kind="reset"
    version="17.0"
@@ -1005,6 +1050,11 @@
    version="17.0"
    start="clk_0.clk_reset"
    end="rightMagnetic.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="encoderReset.reset" />
  <connection
    kind="reset"
    version="17.0"
@@ -1034,17 +1084,7 @@
    kind="reset"
    version="17.0"
    start="nios2_processor.jtag_debug_module_reset"
-   end="swivelDistance.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="nios2_processor.jtag_debug_module_reset"
    end="encoderInCM.reset" />
- <connection
-   kind="reset"
-   version="17.0"
-   start="nios2_processor.jtag_debug_module_reset"
-   end="swivelDirection.reset" />
  <connection
    kind="reset"
    version="17.0"
@@ -1090,6 +1130,11 @@
    version="17.0"
    start="nios2_processor.jtag_debug_module_reset"
    end="rightMagnetic.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="encoderReset.reset" />
  <connection
    kind="reset"
    version="17.0"
