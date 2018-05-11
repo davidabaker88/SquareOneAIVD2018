@@ -76,32 +76,32 @@ Drive Drive(
 
 SonicSensorNetwork SonicSensorNetwork(
 //x6 echo
-.echo(GPIO_0[3]),
-.echo1(GPIO_0[4]),
-.echo2(GPIO_0[5]),
-.echo3(GPIO_0[6]),
-.echo4(GPIO_0[7]),
-.echo5(GPIO_0[8]),
+.E1(GPIO_0[3]),
+.E2(GPIO_0[4]),
+.E3(GPIO_0[5]),
+.E4(GPIO_0[6]),
+.E5(GPIO_0[7]),
+.E6(GPIO_0[8]),
 .CLOCK_50(CLOCK_50),
 .reset(KEY[0]),
 //outputs
 //x6 Trigger
-.Trigger(GPIO_0[9]),
-.Trigger1(GPIO_0[10]),
-.Trigger2(GPIO_0[11]),
-.Trigger3(GPIO_0[12]),
-.Trigger4(GPIO_0[13]),
-.Trigger5(GPIO_0[14]),
+.T1(GPIO_0[9]),
+.T2(GPIO_0[10]),
+.T3(GPIO_0[11]),
+.T4(GPIO_0[12]),
+.T5(GPIO_0[13]),
+.T6(GPIO_0[14]),
 
 
 
 //x6 DistanceInCM
-.DistanceInCM(FLSensorInCM), 
-.DistanceInCM1(FRSensorInCM), 
-.DistanceInCM2(RSensorInCM), 
-.DistanceInCM3(BRSensorInCM), 
-.DistanceInCM4(BLSensorInCM), 
-.DistanceInCM5(LSensorInCM) 
+.Dist1(FLSensorInCM), 
+.Dist2(FRSensorInCM), 
+.Dist3(RSensorInCM), 
+.Dist4(BRSensorInCM), 
+.Dist5(BLSensorInCM), 
+.Dist6(LSensorInCM) 
 );
 
 Debug Debug(
