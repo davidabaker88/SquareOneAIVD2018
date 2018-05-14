@@ -21,18 +21,20 @@ MotorSpeed
  input wire     Reset;
  input wire     EncoderReset;
  input wire     SWDirection;
- input wire     SWSpeed;
+ 	wire   SWDirection_n;
+ input wire [6:0]     SWSpeed;
 
- output wire    [31:0] EncoderInCM;
+ output reg    [31:0] EncoderInCM;
  wire    [31:0] EncoderInCM_n;
 
  output wire    MotorDirection;
  output wire    MotorPWM;
  output wire    MotorSpeed;
+	wire MotorSpeed_n;
 
  wire [23:0]    encoder_c;
 
-/*encoder stuff
+encoder stuff
 FirstCounter(
 	.rst_n(~Reset),
 	.CLOCK_50(CLOCK_50),
@@ -43,15 +45,26 @@ FirstCounter(
  assign EncoderInCM_n = encoder_c*0.4; //fixme fix constant 
 
 always @(posedge CLOCK_50) begin
-		temp_curr <= w_curr;
-		r_curr <= temp_curr;
-		r_prev <= r_curr;
-		r_count <= ~rst_n ? 'd0: count_next;
+		EncoderInCM <=~ Reset ? 'd0: EncoderInCM_n;
 	end
 
 //motor stuff
+	assign SWDirection_n =  SWDirection;
+	assign MotorSpeed_n = MotorSpeed;
+	
+	always @(posedge CLOCK_50) begin
+		SWDirection <=~ Reset ? 'd0: SWDirection_n;
+		MotorSpeed <= Reset ? 'd0: MotorSpeed_n;
+	end
+	
+	ClockDivider #(.COUNTER_WIDTH(25)) pwm(
+												.CLOCK_IN(CLOCK_50),
+		.CLOCK_DIVIDER('d100),//16 samples per second (~from recommended 60ms)
+              
+               .HIGH_TIME(SWSpeed),//number of ticks high –FIXME check math 
+		.async_reset(~Reset), //do not reset for now
+												.CLOCK_OUT(MotorPWM));	
  
  
- */
  
 endmodule
