@@ -1,6 +1,6 @@
-module Debug(Clock_50,Reset, driveSpeedPercentageencoderInCM,FRSensorInCM,FLSensorInCM,RSensorInCM,
-					LSensorInCM,BLSensorInCM,GPSLat,GPSLong,leftMagnetic,rightMagnetic,challengeSelect,
-					redLight,yellowLight,greenLight,targetDirection,swivelDistance,swivelDirection,reverse,SW,LEDR,KEY
+module Debug(CLOCK_50, driveSpeedPercentage,encoderInCM,FRSensorInCM,FLSensorInCM,RSensorInCM,EncoderReset,
+					LSensorInCM,BLSensorInCM,BRSensorInCM,GPSLat,GPSLong,leftMagnetic,rightMagnetic,challengeSelect,
+					redLight,yellowLight,greenLight,targetDirection,swivelDistance,swivelDirection,reverse,SW,LEDR,KEY,
 					HEX0,HEX1,HEX2,HEX3,HEX4,HEX5);
 
 					
@@ -27,15 +27,17 @@ module Debug(Clock_50,Reset, driveSpeedPercentageencoderInCM,FRSensorInCM,FLSens
 	input wire [8:0]  targetDirection;
 	input wire [6:0]  driveSpeedPercentage;
 	input wire        swivelDirection;
+	input wire [7:0]  	swivelDistance;
 	input wire        reverse;
 	input wire        EncoderReset;
 	input wire [31:0] encoderInCM;			 
 	input wire [8:0]  RSensorInCM;
 	input wire [8:0]  LSensorInCM;
 	input wire [8:0]	FLSensorInCM;
+	input wire [8:0]	FRSensorInCM;
 	
 	input wire [8:0]  BLSensorInCM;
-	input wire [8:0]  RSensorInCM;
+	input wire [8:0]  BRSensorInCM;
 	input wire [7:0]  leftMagnetic;
 	input wire [7:0]  rightMagnetic;
 	input wire 			GPSLat;
@@ -69,7 +71,7 @@ module Debug(Clock_50,Reset, driveSpeedPercentageencoderInCM,FRSensorInCM,FLSens
 							(SW[5:3] == 'b001) ? leftMagnetic   		 :
 							(SW[5:3] == 'b011) ? RSensorInCM     		 : 
 							(SW[5:3] == 'b010) ? FLSensorInCM    		 :
-							(SW[5:3] == 'b101) ? swivelDirection   
+							(SW[5:3] == 'b101) ? swivelDirection  : 
 								
 								'd0;
 								
@@ -78,8 +80,7 @@ module Debug(Clock_50,Reset, driveSpeedPercentageencoderInCM,FRSensorInCM,FLSens
 							(SW[8:6] == 'b000) ? LSensorInCM 			 : 
 							(SW[8:6] == 'b001) ? EncoderReset 		    :
 							(SW[8:6] == 'b011) ? driveSpeedPercentage  : 
-							(SW[8:6] == 'b101) ? GPSLat							
-								
+							(SW[8:6] == 'b101) ? GPSLat				:			
 								'd0;
 
 								
@@ -118,4 +119,5 @@ Lab2 Display5 (
 		.HEX0(HEX5),
 		.LEDR()
 	);							
-								
+					endmodule			
+					

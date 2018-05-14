@@ -28,18 +28,18 @@ MotorSpeed
 
  output wire    MotorDirection;
  output wire    MotorPWM;
- output wire    wireMotorSpeed;
+ output wire    MotorSpeed;
 
  wire [23:0]    encoder_c;
 
-//encoder stuff
+/*encoder stuff
 FirstCounter(
 	.rst_n(~Reset),
 	.CLOCK_50(CLOCK_50),
 	.A(A),
 	.B(B),
 	.c_out(encoder_c)
-)
+);
  assign EncoderInCM_n = encoder_c*0.4; //fixme fix constant 
 
 always @(posedge CLOCK_50) begin
@@ -52,6 +52,6 @@ always @(posedge CLOCK_50) begin
 //motor stuff
  
  
- 
+ */
  
 endmodule

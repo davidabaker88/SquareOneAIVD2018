@@ -4,9 +4,10 @@ module SonicSensor (CLOCK_50,trigger,echo,distanceCM,reset_n);
 //this is the 50Mhz clock
 input wire CLOCK_50;
 
-output reg distanceCM
+output reg distanceCM;
 input wire trigger;
 input wire echo;
+input wire reset_n;
 wire [32:0] echoCount_next;
 wire [32:0] distance_next;
 reg [32:0] echoCount_r;
@@ -20,7 +21,7 @@ always @(posedge CLOCK_50 ) begin
 	distanceCM <= reset_n ? distance_next : 'd0;
 end
 always @(posedge trigger or negedge reset_n) begin
-	previousValue_r <=  reset_n ? echoCount_r : 'd0;
+	previousValue_r <=  ~reset_n ?  'd0 : echoCount_r;
 end
 
 

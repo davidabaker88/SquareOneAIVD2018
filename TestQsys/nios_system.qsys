@@ -21,7 +21,7 @@
    {
       datum baseAddress
       {
-         value = "8256";
+         value = "8304";
          type = "String";
       }
    }
@@ -37,7 +37,7 @@
    {
       datum baseAddress
       {
-         value = "8240";
+         value = "8288";
          type = "String";
       }
    }
@@ -53,7 +53,7 @@
    {
       datum baseAddress
       {
-         value = "8304";
+         value = "8352";
          type = "String";
       }
    }
@@ -69,7 +69,7 @@
    {
       datum baseAddress
       {
-         value = "8320";
+         value = "8368";
          type = "String";
       }
    }
@@ -85,7 +85,7 @@
    {
       datum baseAddress
       {
-         value = "8272";
+         value = "8320";
          type = "String";
       }
    }
@@ -101,7 +101,7 @@
    {
       datum baseAddress
       {
-         value = "8288";
+         value = "8336";
          type = "String";
       }
    }
@@ -125,7 +125,7 @@
    {
       datum baseAddress
       {
-         value = "8400";
+         value = "8416";
          type = "String";
       }
    }
@@ -141,7 +141,7 @@
    {
       datum baseAddress
       {
-         value = "8368";
+         value = "8400";
          type = "String";
       }
    }
@@ -157,7 +157,23 @@
    {
       datum baseAddress
       {
-         value = "8192";
+         value = "8240";
+         type = "String";
+      }
+   }
+   element greenLight
+   {
+      datum _sortIndex
+      {
+         value = "17";
+         type = "int";
+      }
+   }
+   element greenLight.s1
+   {
+      datum baseAddress
+      {
+         value = "8224";
          type = "String";
       }
    }
@@ -173,7 +189,7 @@
    {
       datum baseAddress
       {
-         value = "8432";
+         value = "8448";
          type = "String";
       }
    }
@@ -189,7 +205,7 @@
    {
       datum baseAddress
       {
-         value = "8224";
+         value = "8272";
          type = "String";
       }
    }
@@ -230,6 +246,22 @@
          type = "String";
       }
    }
+   element redLight
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+   }
+   element redLight.s1
+   {
+      datum baseAddress
+      {
+         value = "8192";
+         type = "String";
+      }
+   }
    element reverse
    {
       datum _sortIndex
@@ -242,7 +274,7 @@
    {
       datum baseAddress
       {
-         value = "8336";
+         value = "8384";
          type = "String";
       }
    }
@@ -258,7 +290,7 @@
    {
       datum baseAddress
       {
-         value = "8208";
+         value = "8256";
          type = "String";
       }
    }
@@ -274,7 +306,23 @@
    {
       datum baseAddress
       {
-         value = "8416";
+         value = "8432";
+         type = "String";
+      }
+   }
+   element yellowLight
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
+   element yellowLight.s1
+   {
+      datum baseAddress
+      {
+         value = "8208";
          type = "String";
       }
    }
@@ -534,6 +582,20 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="1" />
  </module>
+ <module name="greenLight" kind="altera_avalon_pio" version="17.0" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
  <module
    name="jtag_uart"
    kind="altera_avalon_jtag_uart"
@@ -585,7 +647,7 @@
   <parameter name="cpuReset" value="false" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="dataAddrWidth" value="14" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='encoderReset.s1' start='0x2000' end='0x2010' /><slave name='rightMagnetic.s1' start='0x2010' end='0x2020' /><slave name='leftMagnetic.s1' start='0x2020' end='0x2030' /><slave name='BRSensorInCM.s1' start='0x2030' end='0x2040' /><slave name='BLSensorInCM.s1' start='0x2040' end='0x2050' /><slave name='LSensorInCM.s1' start='0x2050' end='0x2060' /><slave name='RSensorInCM.s1' start='0x2060' end='0x2070' /><slave name='FLSensorInCM.s1' start='0x2070' end='0x2080' /><slave name='FRSensorInCM.s1' start='0x2080' end='0x2090' /><slave name='reverse.s1' start='0x2090' end='0x20A0' /><slave name='encoderInCM.s1' start='0x20B0' end='0x20C0' /><slave name='driveSpeedPercentage.s1' start='0x20D0' end='0x20E0' /><slave name='targetDirection.s1' start='0x20E0' end='0x20F0' /><slave name='jtag_uart.avalon_jtag_slave' start='0x20F0' end='0x20F8' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory.s1' start='0x0' end='0x1000' /><slave name='nios2_processor.jtag_debug_module' start='0x1800' end='0x2000' /><slave name='redLight.s1' start='0x2000' end='0x2010' /><slave name='yellowLight.s1' start='0x2010' end='0x2020' /><slave name='greenLight.s1' start='0x2020' end='0x2030' /><slave name='encoderReset.s1' start='0x2030' end='0x2040' /><slave name='rightMagnetic.s1' start='0x2040' end='0x2050' /><slave name='leftMagnetic.s1' start='0x2050' end='0x2060' /><slave name='BRSensorInCM.s1' start='0x2060' end='0x2070' /><slave name='BLSensorInCM.s1' start='0x2070' end='0x2080' /><slave name='LSensorInCM.s1' start='0x2080' end='0x2090' /><slave name='RSensorInCM.s1' start='0x2090' end='0x20A0' /><slave name='FLSensorInCM.s1' start='0x20A0' end='0x20B0' /><slave name='FRSensorInCM.s1' start='0x20B0' end='0x20C0' /><slave name='reverse.s1' start='0x20C0' end='0x20D0' /><slave name='encoderInCM.s1' start='0x20D0' end='0x20E0' /><slave name='driveSpeedPercentage.s1' start='0x20E0' end='0x20F0' /><slave name='targetDirection.s1' start='0x20F0' end='0x2100' /><slave name='jtag_uart.avalon_jtag_slave' start='0x2100' end='0x2108' /></address-map>]]></parameter>
   <parameter name="dcache_bursts" value="false" />
   <parameter name="dcache_lineSize" value="32" />
   <parameter name="dcache_numTCDM" value="0" />
@@ -734,6 +796,20 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="redLight" kind="altera_avalon_pio" version="17.0" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
  <module name="reverse" kind="altera_avalon_pio" version="17.0" enabled="1">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
@@ -784,13 +860,31 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="9" />
  </module>
+ <module
+   name="yellowLight"
+   kind="altera_avalon_pio"
+   version="17.0"
+   enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Input" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="1" />
+ </module>
  <connection
    kind="avalon"
    version="17.0"
    start="nios2_processor.data_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x20f0" />
+  <parameter name="baseAddress" value="0x2100" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -817,7 +911,7 @@
    start="nios2_processor.data_master"
    end="targetDirection.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x20e0" />
+  <parameter name="baseAddress" value="0x20f0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -826,7 +920,7 @@
    start="nios2_processor.data_master"
    end="driveSpeedPercentage.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x20d0" />
+  <parameter name="baseAddress" value="0x20e0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -835,7 +929,7 @@
    start="nios2_processor.data_master"
    end="encoderInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x20b0" />
+  <parameter name="baseAddress" value="0x20d0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -844,7 +938,7 @@
    start="nios2_processor.data_master"
    end="reverse.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2090" />
+  <parameter name="baseAddress" value="0x20c0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -853,7 +947,7 @@
    start="nios2_processor.data_master"
    end="FRSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2080" />
+  <parameter name="baseAddress" value="0x20b0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -862,7 +956,7 @@
    start="nios2_processor.data_master"
    end="FLSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2070" />
+  <parameter name="baseAddress" value="0x20a0" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -871,7 +965,7 @@
    start="nios2_processor.data_master"
    end="RSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2060" />
+  <parameter name="baseAddress" value="0x2090" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -880,7 +974,7 @@
    start="nios2_processor.data_master"
    end="LSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2050" />
+  <parameter name="baseAddress" value="0x2080" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -889,7 +983,7 @@
    start="nios2_processor.data_master"
    end="BLSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2040" />
+  <parameter name="baseAddress" value="0x2070" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -898,7 +992,7 @@
    start="nios2_processor.data_master"
    end="BRSensorInCM.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2030" />
+  <parameter name="baseAddress" value="0x2060" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -907,7 +1001,7 @@
    start="nios2_processor.data_master"
    end="leftMagnetic.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2020" />
+  <parameter name="baseAddress" value="0x2050" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -916,7 +1010,7 @@
    start="nios2_processor.data_master"
    end="rightMagnetic.s1">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x2010" />
+  <parameter name="baseAddress" value="0x2040" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -924,6 +1018,33 @@
    version="17.0"
    start="nios2_processor.data_master"
    end="encoderReset.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="greenLight.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="yellowLight.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x2010" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.0"
+   start="nios2_processor.data_master"
+   end="redLight.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x2000" />
   <parameter name="defaultConnection" value="false" />
@@ -973,6 +1094,9 @@
  <connection kind="clock" version="17.0" start="clk_0.clk" end="leftMagnetic.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="rightMagnetic.clk" />
  <connection kind="clock" version="17.0" start="clk_0.clk" end="encoderReset.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="greenLight.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="yellowLight.clk" />
+ <connection kind="clock" version="17.0" start="clk_0.clk" end="redLight.clk" />
  <connection
    kind="clock"
    version="17.0"
@@ -1059,6 +1183,21 @@
    kind="reset"
    version="17.0"
    start="clk_0.clk_reset"
+   end="greenLight.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="yellowLight.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
+   end="redLight.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="clk_0.clk_reset"
    end="onchip_memory.reset1" />
  <connection
    kind="reset"
@@ -1135,6 +1274,21 @@
    version="17.0"
    start="nios2_processor.jtag_debug_module_reset"
    end="encoderReset.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="greenLight.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="yellowLight.reset" />
+ <connection
+   kind="reset"
+   version="17.0"
+   start="nios2_processor.jtag_debug_module_reset"
+   end="redLight.reset" />
  <connection
    kind="reset"
    version="17.0"

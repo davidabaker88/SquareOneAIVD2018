@@ -160,7 +160,7 @@ agreement for further details.
 		(text "export" (rect 197 587 430 1184)(font "Arial" (color 0 0 0)))
 		(text "targetdirection" (rect 110 603 310 1219)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "export" (rect 197 627 430 1264)(font "Arial" (color 0 0 0)))
-		(text " system " (rect 413 648 874 1306)(font "Arial" ))
+		(text " nios_system " (rect 390 648 858 1306)(font "Arial" ))
 		(line (pt 192 32)(pt 256 32)(line_width 1))
 		(line (pt 256 32)(pt 256 648)(line_width 1))
 		(line (pt 192 648)(pt 256 648)(line_width 1))

@@ -6,7 +6,7 @@ reset,
 
 //outputs
 targetDirection_Ard,
-reset_Pos_Ard,
+reset_Pos_Ard
 );
 
 input wire 				reset_Pos;
@@ -14,7 +14,7 @@ input wire        	CLOCK_50;
 input wire 	[8:0]  	targetDirection;
 input wire     reset;
 output reg [8:0]  	targetDirection_Ard;
-output reg 			reset_Pos_ARD;
+output reg 			reset_Pos_Ard;
 
 always @(posedge CLOCK_50) begin
 	targetDirection_Ard <= reset ? 'b0 : targetDirection;

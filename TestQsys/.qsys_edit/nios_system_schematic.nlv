@@ -2,7 +2,6 @@
 # 
 preplace inst nios_system.driveSpeedPercentage -pg 1 -lvl 3 -y 830
 preplace inst nios_system -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst nios_system.swivelDirection -pg 1 -lvl 3 -y 1430
 preplace inst nios_system.onchip_memory -pg 1 -lvl 3 -y 630
 preplace inst nios_system.encoderInCM -pg 1 -lvl 3 -y 930
 preplace inst nios_system.RSensorInCM -pg 1 -lvl 3 -y 1130
@@ -15,31 +14,28 @@ preplace inst nios_system.BRSensorInCM -pg 1 -lvl 3 -y 30
 preplace inst nios_system.FRSensorInCM -pg 1 -lvl 3 -y 430
 preplace inst nios_system.LSensorInCM -pg 1 -lvl 3 -y 530
 preplace inst nios_system.FLSensorInCM -pg 1 -lvl 3 -y 130
-preplace inst nios_system.swivelDistance -pg 1 -lvl 3 -y 1530
 preplace inst nios_system.jtag_uart -pg 1 -lvl 3 -y 330
 preplace inst nios_system.encoderReset -pg 1 -lvl 3 -y 230
 preplace inst nios_system.BLSensorInCM -pg 1 -lvl 3 -y 1730
 preplace inst nios_system.clk_0 -pg 1 -lvl 2 -y 770
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.rightmagnetic,(SLAVE)rightMagnetic.external_connection) 1 0 3 NJ 1360 NJ 1360 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)reverse.external_connection,(SLAVE)nios_system.reverse) 1 0 3 NJ 1260 NJ 1260 NJ
-preplace netloc INTERCONNECT<net_container>nios_system</net_container>(SLAVE)nios2_processor.reset_n,(SLAVE)RSensorInCM.reset,(SLAVE)LSensorInCM.reset,(SLAVE)onchip_memory.reset1,(SLAVE)jtag_uart.reset,(SLAVE)swivelDirection.reset,(SLAVE)FLSensorInCM.reset,(SLAVE)rightMagnetic.reset,(SLAVE)BLSensorInCM.reset,(SLAVE)leftMagnetic.reset,(SLAVE)BRSensorInCM.reset,(SLAVE)encoderInCM.reset,(SLAVE)swivelDistance.reset,(SLAVE)reverse.reset,(MASTER)clk_0.clk_reset,(MASTER)nios2_processor.jtag_debug_module_reset,(SLAVE)FRSensorInCM.reset,(SLAVE)driveSpeedPercentage.reset,(SLAVE)encoderReset.reset,(SLAVE)targetDirection.reset) 1 0 3 170 220 480 340 840
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)swivelDirection.external_connection,(SLAVE)nios_system.swiveldirection) 1 0 3 NJ 1460 NJ 1460 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.drivespeedpercentage,(SLAVE)driveSpeedPercentage.external_connection) 1 0 3 NJ 860 NJ 860 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)nios_system.reset) 1 0 2 NJ 820 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.frsensorincm,(SLAVE)FRSensorInCM.external_connection) 1 0 3 NJ 460 NJ 460 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)driveSpeedPercentage.external_connection,(SLAVE)nios_system.drivespeedpercentage) 1 0 3 NJ 860 NJ 860 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)encoderReset.external_connection,(SLAVE)nios_system.encoderreset) 1 0 3 NJ 240 NJ 260 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.clk,(SLAVE)clk_0.clk_in) 1 0 2 NJ 800 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)BLSensorInCM.external_connection,(SLAVE)nios_system.blsensorincm) 1 0 3 NJ 1760 NJ 1760 NJ
-preplace netloc FAN_OUT<net_container>nios_system</net_container>(SLAVE)rightMagnetic.clk,(SLAVE)encoderReset.clk,(SLAVE)swivelDirection.clk,(SLAVE)driveSpeedPercentage.clk,(SLAVE)nios2_processor.clk,(SLAVE)FRSensorInCM.clk,(SLAVE)leftMagnetic.clk,(SLAVE)BRSensorInCM.clk,(SLAVE)onchip_memory.clk1,(SLAVE)encoderInCM.clk,(SLAVE)LSensorInCM.clk,(SLAVE)jtag_uart.clk,(SLAVE)FLSensorInCM.clk,(SLAVE)swivelDistance.clk,(SLAVE)reverse.clk,(SLAVE)BLSensorInCM.clk,(SLAVE)targetDirection.clk,(MASTER)clk_0.clk,(SLAVE)RSensorInCM.clk) 1 0 3 190 200 NJ 200 800
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.swiveldistacne,(SLAVE)swivelDistance.external_connection) 1 0 3 NJ 1560 NJ 1560 NJ
-preplace netloc INTERCONNECT<net_container>nios_system</net_container>(SLAVE)swivelDistance.s1,(SLAVE)encoderReset.s1,(SLAVE)reverse.s1,(SLAVE)BRSensorInCM.s1,(SLAVE)swivelDirection.s1,(MASTER)nios2_processor.instruction_master,(SLAVE)nios2_processor.jtag_debug_module,(SLAVE)FLSensorInCM.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)encoderInCM.s1,(SLAVE)driveSpeedPercentage.s1,(SLAVE)leftMagnetic.s1,(SLAVE)BLSensorInCM.s1,(SLAVE)targetDirection.s1,(SLAVE)onchip_memory.s1,(MASTER)nios2_processor.data_master,(SLAVE)FRSensorInCM.s1,(SLAVE)RSensorInCM.s1,(SLAVE)LSensorInCM.s1,(SLAVE)rightMagnetic.s1) 1 0 3 210 240 460 320 860
+preplace netloc FAN_OUT<net_container>nios_system</net_container>(SLAVE)FRSensorInCM.clk,(SLAVE)LSensorInCM.clk,(MASTER)clk_0.clk,(SLAVE)nios2_processor.clk,(SLAVE)RSensorInCM.clk,(SLAVE)BLSensorInCM.clk,(SLAVE)targetDirection.clk,(SLAVE)driveSpeedPercentage.clk,(SLAVE)rightMagnetic.clk,(SLAVE)BRSensorInCM.clk,(SLAVE)leftMagnetic.clk,(SLAVE)encoderInCM.clk,(SLAVE)FLSensorInCM.clk,(SLAVE)reverse.clk,(SLAVE)encoderReset.clk,(SLAVE)onchip_memory.clk1,(SLAVE)jtag_uart.clk) 1 0 3 170 480 NJ 480 780
+preplace netloc INTERCONNECT<net_container>nios_system</net_container>(SLAVE)rightMagnetic.s1,(SLAVE)onchip_memory.s1,(SLAVE)driveSpeedPercentage.s1,(SLAVE)LSensorInCM.s1,(SLAVE)FRSensorInCM.s1,(SLAVE)nios2_processor.jtag_debug_module,(SLAVE)FLSensorInCM.s1,(SLAVE)encoderReset.s1,(MASTER)nios2_processor.data_master,(SLAVE)BRSensorInCM.s1,(SLAVE)leftMagnetic.s1,(SLAVE)RSensorInCM.s1,(SLAVE)targetDirection.s1,(SLAVE)BLSensorInCM.s1,(SLAVE)encoderInCM.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)reverse.s1,(MASTER)nios2_processor.instruction_master) 1 0 3 190 380 480 300 820
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.reverse,(SLAVE)reverse.external_connection) 1 0 3 NJ 1260 NJ 1260 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.lsensorincm,(SLAVE)LSensorInCM.external_connection) 1 0 3 NJ 840 NJ 840 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.encoderreset,(SLAVE)encoderReset.external_connection) 1 0 3 NJ 180 NJ 180 NJ
-preplace netloc POINT_TO_POINT<net_container>nios_system</net_container>(SLAVE)jtag_uart.irq,(MASTER)nios2_processor.d_irq) 1 1 2 NJ 280 780
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)encoderInCM.external_connection,(SLAVE)nios_system.encoderincm) 1 0 3 NJ 960 NJ 960 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)BRSensorInCM.external_connection,(SLAVE)nios_system.brsensorincm) 1 0 3 NJ 420 NJ 420 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)leftMagnetic.external_connection,(SLAVE)nios_system.leftmagnetic) 1 0 3 NJ 1060 NJ 1060 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.brsensorincm,(SLAVE)BRSensorInCM.external_connection) 1 0 3 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.blsensorincm,(SLAVE)BLSensorInCM.external_connection) 1 0 3 NJ 1760 NJ 1760 NJ
+preplace netloc POINT_TO_POINT<net_container>nios_system</net_container>(MASTER)nios2_processor.d_irq,(SLAVE)jtag_uart.irq) 1 1 2 NJ 280 760
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)FLSensorInCM.external_connection,(SLAVE)nios_system.flsensorincm) 1 0 3 NJ 160 NJ 160 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)RSensorInCM.external_connection,(SLAVE)nios_system.rsensorincm) 1 0 3 NJ 1160 NJ 1160 NJ
+preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.encoderincm,(SLAVE)encoderInCM.external_connection) 1 0 3 NJ 960 NJ 960 NJ
 preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.targetdirection,(SLAVE)targetDirection.external_connection) 1 0 3 NJ 1660 NJ 1660 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.flsensorincm,(SLAVE)FLSensorInCM.external_connection) 1 0 3 NJ 160 NJ 160 NJ
-preplace netloc EXPORT<net_container>nios_system</net_container>(SLAVE)nios_system.leftmagnetic,(SLAVE)leftMagnetic.external_connection) 1 0 3 NJ 1060 NJ 1060 NJ
+preplace netloc INTERCONNECT<net_container>nios_system</net_container>(MASTER)clk_0.clk_reset,(SLAVE)BLSensorInCM.reset,(SLAVE)targetDirection.reset,(SLAVE)BRSensorInCM.reset,(SLAVE)FRSensorInCM.reset,(SLAVE)LSensorInCM.reset,(MASTER)nios2_processor.jtag_debug_module_reset,(SLAVE)onchip_memory.reset1,(SLAVE)encoderInCM.reset,(SLAVE)rightMagnetic.reset,(SLAVE)driveSpeedPercentage.reset,(SLAVE)leftMagnetic.reset,(SLAVE)RSensorInCM.reset,(SLAVE)encoderReset.reset,(SLAVE)nios2_processor.reset_n,(SLAVE)reverse.reset,(SLAVE)FLSensorInCM.reset,(SLAVE)jtag_uart.reset) 1 0 3 210 400 460 340 800
 levelinfo -pg 1 0 140 1070
 levelinfo -hier nios_system 150 240 590 900 1060

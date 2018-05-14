@@ -1,16 +1,16 @@
 module CustomLogic (
 				//INPUTS from board
-				LEDR,SW,GPIO_0,GPIO_1,ADC_CON,KEY,CLOCK_50,
+				LEDR,SW,GPIO_0,GPIO_1,KEY,CLOCK_50,
 				//Inputs from processor
-				targetDirection,driveSpeedPercentage,swivelDistance,swivelDirection,reverse,steeringReset
+				targetDirection,driveSpeedPercentage,swivelDistance,swivelDirection,reverse,steeringReset,EncoderReset,
 			    //OUTPUTS to board
 				HEX0,HEX1,HEX2,HEX3,HEX4,HEX5,
 				//Outputs to Processor
-				 encoderInCM,FRSensorInCM,FLSensorInC,RSensorInCM,LSensorInCM,RSensorInCM,BLSensorInCM,GPSLat,GPSLongleftMagnetic,rightMagnetic,challengeSelect,
+				 encoderInCM,FRSensorInCM,FLSensorInCM,RSensorInCM,LSensorInCM,BRSensorInCM,BLSensorInCM,GPSLat,GPSLong,leftMagnetic,rightMagnetic,challengeSelect,
 				 redLight,yellowLight,greenLight
-				) 
+				); 
 				
-input wire [9:0]  	LEDR;
+output wire [9:0]  	LEDR;
 input wire [9:0]  	SW;
 inout wire [39:0] 	GPIO_0;
 inout wire [39:0] 	GPIO_1;		
@@ -23,10 +23,17 @@ input wire        	swivelDirection;
 input wire       	 	reverse;
 input wire        	EncoderReset;
 input wire 				steeringReset;
+input wire [6:0] HEX0;
+input wire [6:0] HEX1;
+input wire [6:0] HEX2;
+input wire [6:0] HEX3;
+input wire [6:0] HEX4;
+input wire [6:0] HEX5;
+
 
  
 output wire [31:0] 	encoderInCM;				 
-output wire [8:0]  	FRSensorInCM
+output wire [8:0]  	FRSensorInCM;
 output wire [8:0]  	FLSensorInCM;
 output wire	[8:0] 	RSensorInCM;
 output wire [8:0]  	LSensorInCM;
@@ -34,6 +41,7 @@ output wire [8:0]  	BLSensorInCM;
 output wire [8:0]  	BRSensorInCM;
 output wire [7:0]  	leftMagnetic;
 output wire [7:0]  	rightMagnetic;
+output wire [3:0] 	challengeSelect;
 
 output wire 			redLight;
 output wire 			yellowLight;
@@ -106,8 +114,7 @@ SonicSensorNetwork SonicSensorNetwork(
 
 Debug Debug(
 
-.Clock_50(Clock_50),
-.Reset(KEY[0]),
+.CLOCK_50(Clock_50),
 .driveSpeedPercentage(MotorSpeed),
 .encoderInCM(encoderInCM),
 .FRSensorInCM(FRSensorInCM),

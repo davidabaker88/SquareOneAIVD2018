@@ -1,5 +1,7 @@
-module SonicSensorNetwork (E1,T1,E2,T2,E3,T3,E4,T4,E5,T5,E6,T6,Dist1,Dist2,Dist3,Dist4,Dist5,Dist6,reset,CLOCK_50)
+module SonicSensorNetwork (E1,T1,E2,T2,E3,T3,E4,T4,E5,T5,E6,T6,Dist1,Dist2,Dist3,Dist4,Dist5,Dist6,reset,CLOCK_50);
 input wire CLOCK_50;
+input wire reset;
+
 //echo
 input wire E1;
 input wire E2;
@@ -14,6 +16,12 @@ output wire T3;
 output wire T4;
 output wire T5;
 output wire T6;
+output wire [8:0] Dist1;
+output wire [8:0] Dist2;
+output wire [8:0] Dist3;
+output wire [8:0] Dist4;
+output wire [8:0] Dist5;
+output wire [8:0] Dist6;
 
 wire TS1;
 wire TS2;
