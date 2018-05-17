@@ -1,0 +1,16 @@
+BLOCK		START ADDRESS		END ADDRESS
+
+hwimage.hex		0x00000000		0x001EBA56
+swimage.hex		0x001EBA57		0x001EC37A
+
+
+Configuration device: 5CSEMA5
+Configuration mode: Active Serial
+Quad-Serial configuration device dummy clock cycle: 0
+
+
+Notes:
+
+- Data checksum for this conversion is 0xE2A6E07C
+
+- All the addresses in this file are byte addresses

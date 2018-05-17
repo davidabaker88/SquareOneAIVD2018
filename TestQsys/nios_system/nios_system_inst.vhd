@@ -14,7 +14,10 @@
 			reverse_export              : out std_logic;                                        -- export
 			rightmagnetic_export        : out std_logic_vector(7 downto 0);                     -- export
 			rsensorincm_export          : out std_logic_vector(8 downto 0);                     -- export
-			targetdirection_export      : out std_logic_vector(8 downto 0)                      -- export
+			targetdirection_export      : out std_logic_vector(8 downto 0);                     -- export
+			greenlight_export           : in  std_logic                     := 'X';             -- export
+			yellowlight_export          : in  std_logic                     := 'X';             -- export
+			redlight_export             : in  std_logic                     := 'X'              -- export
 		);
 	end component nios_system;
 
@@ -34,6 +37,9 @@
 			reverse_export              => CONNECTED_TO_reverse_export,              --              reverse.export
 			rightmagnetic_export        => CONNECTED_TO_rightmagnetic_export,        --        rightmagnetic.export
 			rsensorincm_export          => CONNECTED_TO_rsensorincm_export,          --          rsensorincm.export
-			targetdirection_export      => CONNECTED_TO_targetdirection_export       --      targetdirection.export
+			targetdirection_export      => CONNECTED_TO_targetdirection_export,      --      targetdirection.export
+			greenlight_export           => CONNECTED_TO_greenlight_export,           --           greenlight.export
+			yellowlight_export          => CONNECTED_TO_yellowlight_export,          --          yellowlight.export
+			redlight_export             => CONNECTED_TO_redlight_export              --             redlight.export
 		);
 

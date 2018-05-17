@@ -12,13 +12,16 @@ module nios_system (
 		output wire        encoderreset_export,         //         encoderreset.export
 		output wire [8:0]  flsensorincm_export,         //         flsensorincm.export
 		input  wire [8:0]  frsensorincm_export,         //         frsensorincm.export
+		input  wire        greenlight_export,           //           greenlight.export
 		output wire [7:0]  leftmagnetic_export,         //         leftmagnetic.export
 		output wire [8:0]  lsensorincm_export,          //          lsensorincm.export
+		input  wire        redlight_export,             //             redlight.export
 		input  wire        reset_reset_n,               //                reset.reset_n
 		output wire        reverse_export,              //              reverse.export
 		output wire [7:0]  rightmagnetic_export,        //        rightmagnetic.export
 		output wire [8:0]  rsensorincm_export,          //          rsensorincm.export
-		output wire [8:0]  targetdirection_export       //      targetdirection.export
+		output wire [8:0]  targetdirection_export,      //      targetdirection.export
+		input  wire        yellowlight_export           //          yellowlight.export
 	);
 
 	wire  [31:0] nios2_processor_data_master_readdata;                            // mm_interconnect_0:nios2_processor_data_master_readdata -> nios2_processor:d_readdata
@@ -224,7 +227,7 @@ module nios_system (
 		.reset_n  (~rst_controller_reset_out_reset),          //               reset.reset_n
 		.address  (mm_interconnect_0_greenlight_s1_address),  //                  s1.address
 		.readdata (mm_interconnect_0_greenlight_s1_readdata), //                    .readdata
-		.in_port  ()                                          // external_connection.export
+		.in_port  (greenlight_export)                         // external_connection.export
 	);
 
 	nios_system_jtag_uart jtag_uart (
@@ -299,7 +302,7 @@ module nios_system (
 		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
 		.address  (mm_interconnect_0_redlight_s1_address),  //                  s1.address
 		.readdata (mm_interconnect_0_redlight_s1_readdata), //                    .readdata
-		.in_port  ()                                        // external_connection.export
+		.in_port  (redlight_export)                         // external_connection.export
 	);
 
 	nios_system_encoderReset reverse (
@@ -340,7 +343,7 @@ module nios_system (
 		.reset_n  (~rst_controller_reset_out_reset),           //               reset.reset_n
 		.address  (mm_interconnect_0_yellowlight_s1_address),  //                  s1.address
 		.readdata (mm_interconnect_0_yellowlight_s1_readdata), //                    .readdata
-		.in_port  ()                                           // external_connection.export
+		.in_port  (yellowlight_export)                         // external_connection.export
 	);
 
 	nios_system_mm_interconnect_0 mm_interconnect_0 (

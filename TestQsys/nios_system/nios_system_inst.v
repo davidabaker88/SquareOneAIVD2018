@@ -13,6 +13,9 @@
 		.reverse_export              (<connected-to-reverse_export>),              //              reverse.export
 		.rightmagnetic_export        (<connected-to-rightmagnetic_export>),        //        rightmagnetic.export
 		.rsensorincm_export          (<connected-to-rsensorincm_export>),          //          rsensorincm.export
-		.targetdirection_export      (<connected-to-targetdirection_export>)       //      targetdirection.export
+		.targetdirection_export      (<connected-to-targetdirection_export>),      //      targetdirection.export
+		.greenlight_export           (<connected-to-greenlight_export>),           //           greenlight.export
+		.yellowlight_export          (<connected-to-yellowlight_export>),          //          yellowlight.export
+		.redlight_export             (<connected-to-redlight_export>)              //             redlight.export
 	);
 

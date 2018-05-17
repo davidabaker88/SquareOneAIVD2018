@@ -14,7 +14,10 @@ module nios_system (
 	reverse_export,
 	rightmagnetic_export,
 	rsensorincm_export,
-	targetdirection_export);	
+	targetdirection_export,
+	greenlight_export,
+	yellowlight_export,
+	redlight_export);	
 
 	output	[8:0]	blsensorincm_export;
 	output	[8:0]	brsensorincm_export;
@@ -31,4 +34,7 @@ module nios_system (
 	output	[7:0]	rightmagnetic_export;
 	output	[8:0]	rsensorincm_export;
 	output	[8:0]	targetdirection_export;
+	input		greenlight_export;
+	input		yellowlight_export;
+	input		redlight_export;
 endmodule

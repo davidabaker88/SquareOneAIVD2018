@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="8604186373c4efce545f"/>
+    <hash md5_digest_80b="53693816ec4150c464f8"/>
   </project>
   <file_info>
     <file device="5CSEMA5F31C6" path="ledTest.sof" usercode="0xFFFFFFFF"/>
@@ -99,7 +99,7 @@
     </sld_info>
     <sld_info hpath="nios_system:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1526303925"/>
+        <assignment_value text="QSYS_NAME nios_system HAS_SOPCINFO 1 GENERATION_ID 1526573058"/>
       </assignment_values>
       <parameters/>
     </sld_info>

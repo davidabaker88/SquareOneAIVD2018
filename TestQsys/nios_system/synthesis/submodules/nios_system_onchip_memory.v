@@ -36,7 +36,7 @@ module nios_system_onchip_memory (
                                  )
 ;
 
-  parameter INIT_FILE = "nios_system_onchip_memory.hex";
+  parameter INIT_FILE = "H:/SquareOneAIVD2018/swimage.hex";
 
 
   output  [ 31: 0] readdata;

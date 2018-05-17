@@ -384,6 +384,11 @@
    type="conduit"
    dir="end" />
  <interface
+   name="greenlight"
+   internal="greenLight.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
    name="leftmagnetic"
    internal="leftMagnetic.external_connection"
    type="conduit"
@@ -391,6 +396,11 @@
  <interface
    name="lsensorincm"
    internal="LSensorInCM.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="redlight"
+   internal="redLight.external_connection"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
@@ -412,6 +422,11 @@
  <interface
    name="targetdirection"
    internal="targetDirection.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="yellowlight"
+   internal="yellowLight.external_connection"
    type="conduit"
    dir="end" />
  <module
@@ -541,7 +556,7 @@
   <parameter name="edgeType" value="RISING" />
   <parameter name="generateIRQ" value="false" />
   <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
+  <parameter name="resetValue" value="15" />
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="7" />
@@ -782,7 +797,7 @@
   <parameter name="enPRInitMode" value="false" />
   <parameter name="enableDiffWidth" value="false" />
   <parameter name="initMemContent" value="true" />
-  <parameter name="initializationFileName">C:/intelFPGA_lite/17.0/TestQsys/app_software/nios_system_onchip_memory.hex</parameter>
+  <parameter name="initializationFileName">H:/SquareOneAIVD2018/swimage.hex</parameter>
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="4096" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
@@ -792,7 +807,7 @@
   <parameter name="singleClockOperation" value="false" />
   <parameter name="slave1Latency" value="1" />
   <parameter name="slave2Latency" value="1" />
-  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="useNonDefaultInitFile" value="true" />
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>

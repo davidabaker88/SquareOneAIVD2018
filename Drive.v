@@ -27,22 +27,22 @@ MotorSpeed
  output reg    [31:0] EncoderInCM;
  wire    [31:0] EncoderInCM_n;
 
- output wire    MotorDirection;
+ output reg    MotorDirection;
  output wire    MotorPWM;
- output wire    MotorSpeed;
+ output reg    MotorSpeed;
 	wire MotorSpeed_n;
 
  wire [23:0]    encoder_c;
 
-encoder stuff
-FirstCounter(
+
+FirstCounter firstCounter(
 	.rst_n(~Reset),
 	.CLOCK_50(CLOCK_50),
 	.A(A),
 	.B(B),
 	.c_out(encoder_c)
 );
- assign EncoderInCM_n = encoder_c*0.4; //fixme fix constant 
+ assign EncoderInCM_n = encoder_c * 'd4 / 'd10; //fixme fix constant 
 
 always @(posedge CLOCK_50) begin
 		EncoderInCM <=~ Reset ? 'd0: EncoderInCM_n;
@@ -53,7 +53,7 @@ always @(posedge CLOCK_50) begin
 	assign MotorSpeed_n = MotorSpeed;
 	
 	always @(posedge CLOCK_50) begin
-		SWDirection <=~ Reset ? 'd0: SWDirection_n;
+		MotorDirection <=~ Reset ? 'd0: SWDirection_n;
 		MotorSpeed <= Reset ? 'd0: MotorSpeed_n;
 	end
 	
