@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("H:/SquareOneAIVD2018/TestQsys/output_files/") File("ledTest.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("C:/intelFPGA_lite/17.0/TestQsys/output_files/") File("ledTest.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

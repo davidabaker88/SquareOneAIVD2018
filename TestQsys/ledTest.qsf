@@ -70,13 +70,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACDAT -entity D
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_DACLRCK -entity DE1_SoC
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to AUD_XCK -entity DE1_SoC
 set_location_assignment PIN_AF14 -to CLOCK_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50 -entity DE1_SoC
 set_location_assignment PIN_AA16 -to CLOCK2_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK2_50 -entity DE1_SoC
-set_location_assignment PIN_Y26 -to CLOCK3_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK3_50 -entity DE1_SoC
-set_location_assignment PIN_K14 -to CLOCK4_50
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50 -entity DE1_SoC
 set_location_assignment PIN_AK14 -to DRAM_ADDR[0]
 set_location_assignment PIN_AH14 -to DRAM_ADDR[1]
 set_location_assignment PIN_AG15 -to DRAM_ADDR[2]
@@ -881,16 +875,17 @@ set_instance_assignment -name PACKAGE_SKEW_COMPENSATION OFF -to HPS_DDR3_CK_N -e
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE ../ClockDivider.v
-set_global_assignment -name VERILOG_FILE ../Steering.v
-set_global_assignment -name VERILOG_FILE ../SonicSensorTrig.v
-set_global_assignment -name VERILOG_FILE ../SonicSensorNetwork.v
-set_global_assignment -name VERILOG_FILE ../SonicSensor.v
-set_global_assignment -name VERILOG_FILE ../lab2.v
-set_global_assignment -name VERILOG_FILE ../FirstCounter.v
-set_global_assignment -name VERILOG_FILE ../Drive.v
-set_global_assignment -name VERILOG_FILE ../CustomLogic.v
+set_global_assignment -name SDC_FILE ledTest.sdc
+set_global_assignment -name VERILOG_FILE Steering.v
+set_global_assignment -name VERILOG_FILE SonicSensorTrig.v
+set_global_assignment -name VERILOG_FILE SonicSensorNetwork.v
+set_global_assignment -name VERILOG_FILE SonicSensor.v
+set_global_assignment -name VERILOG_FILE FirstCounter.v
+set_global_assignment -name VERILOG_FILE Drive.v
+set_global_assignment -name VERILOG_FILE ClockDivider.v
+set_global_assignment -name VERILOG_FILE CustomLogic.v
+set_global_assignment -name VERILOG_FILE lab2.v
+set_global_assignment -name VERILOG_FILE Debug.v
 set_global_assignment -name QIP_FILE nios_system/synthesis/nios_system.qip
 set_global_assignment -name VERILOG_FILE ledTest.v
-set_global_assignment -name VERILOG_FILE ../Debug.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

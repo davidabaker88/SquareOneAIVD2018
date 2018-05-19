@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Thu May 17 12:07:07 2018
+Analysis & Synthesis Status : Successful - Fri May 18 17:39:46 2018
 Quartus Prime Version : 17.0.2 Build 602 07/19/2017 SJ Lite Edition
 Revision Name : ledTest
 Top-level Entity Name : ledTest
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 1103
-Total pins : 63
+Total registers : 1446
+Total pins : 145
 Total virtual pins : 0
-Total block memory bits : 44,032
+Total block memory bits : 2,108,416
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

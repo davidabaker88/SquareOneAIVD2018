@@ -1,5 +1,5 @@
 Assembler report for ledTest
-Thu May 17 12:10:02 2018
+Fri May 18 17:43:15 2018
 Quartus Prime Version 17.0.2 Build 602 07/19/2017 SJ Lite Edition
 
 
@@ -11,7 +11,7 @@ Quartus Prime Version 17.0.2 Build 602 07/19/2017 SJ Lite Edition
   3. Assembler Settings
   4. Assembler Encrypted IP Cores Summary
   5. Assembler Generated Files
-  6. Assembler Device Options: H:/SquareOneAIVD2018/TestQsys/output_files/ledTest.sof
+  6. Assembler Device Options: C:/intelFPGA_lite/17.0/TestQsys/output_files/ledTest.sof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu May 17 12:10:02 2018 ;
+; Assembler Status      ; Successful - Fri May 18 17:43:15 2018 ;
 ; Revision Name         ; ledTest                               ;
 ; Top-level Entity Name ; ledTest                               ;
 ; Family                ; Cyclone V                             ;
@@ -64,23 +64,23 @@ agreement for further details.
 +--------+------------------------+--------------+
 
 
-+--------------------------------------------------------+
-; Assembler Generated Files                              ;
-+--------------------------------------------------------+
-; File Name                                              ;
-+--------------------------------------------------------+
-; H:/SquareOneAIVD2018/TestQsys/output_files/ledTest.sof ;
-+--------------------------------------------------------+
++----------------------------------------------------------+
+; Assembler Generated Files                                ;
++----------------------------------------------------------+
+; File Name                                                ;
++----------------------------------------------------------+
+; C:/intelFPGA_lite/17.0/TestQsys/output_files/ledTest.sof ;
++----------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------+
-; Assembler Device Options: H:/SquareOneAIVD2018/TestQsys/output_files/ledTest.sof ;
-+----------------+-----------------------------------------------------------------+
-; Option         ; Setting                                                         ;
-+----------------+-----------------------------------------------------------------+
-; JTAG usercode  ; 0x00F54717                                                      ;
-; Checksum       ; 0x00F54717                                                      ;
-+----------------+-----------------------------------------------------------------+
++------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/intelFPGA_lite/17.0/TestQsys/output_files/ledTest.sof ;
++----------------+-------------------------------------------------------------------+
+; Option         ; Setting                                                           ;
++----------------+-------------------------------------------------------------------+
+; JTAG usercode  ; 0x0618D834                                                        ;
+; Checksum       ; 0x0618D834                                                        ;
++----------------+-------------------------------------------------------------------+
 
 
 +--------------------+
@@ -89,14 +89,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 17.0.2 Build 602 07/19/2017 SJ Lite Edition
-    Info: Processing started: Thu May 17 12:09:43 2018
+    Info: Processing started: Fri May 18 17:42:59 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off ledTest -c ledTest
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 737 megabytes
-    Info: Processing ended: Thu May 17 12:10:03 2018
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:10
+    Info: Peak virtual memory: 793 megabytes
+    Info: Processing ended: Fri May 18 17:43:16 2018
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:16
 
 
